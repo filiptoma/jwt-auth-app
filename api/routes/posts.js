@@ -7,4 +7,9 @@ router.get(
 	postsController.userPosts
 )
 
+router.get(
+	'/posts/all',
+	postsController.allPosts
+)
+
 module.exports = router
