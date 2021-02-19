@@ -6,9 +6,7 @@
 
 <style>
 html {
-  font-family:
-    'Source Sans Pro',
-    sans-serif;
+  font-family: 'Catamaran', sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
