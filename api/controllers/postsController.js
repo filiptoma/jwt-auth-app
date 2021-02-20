@@ -1,4 +1,4 @@
-const Post = require('../models/Post')
+const Post = require('../../db/models/Post')
 
 module.exports.userPosts = async (req, res) => {
 	// Next line is possible thanks to JWT middleware on this route (in TokenService.js)

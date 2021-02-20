@@ -1,4 +1,4 @@
-const RefreshToken = require('../../api/models/RefreshToken')
+const RefreshToken = require('../../db/models/RefreshToken')
 const jwt = require('jsonwebtoken')
 
 module.exports.renew = async (req, res) => {

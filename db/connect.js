@@ -11,10 +11,10 @@ mongoose.connect(
 	}
 )
 
-let db = mongoose.connection
-db.on('error', console.error.bind(console, 'DB connection error:'))
-db.once('open', () => {
+let connect = mongoose.connection
+connect.on('error', console.error.bind(console, 'DB connection error:'))
+connect.once('open', () => {
 	console.log('DB connection successful!')
 })
 
-module.exports = db
+module.exports = connect
