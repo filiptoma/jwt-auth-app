@@ -1,8 +1,27 @@
 <template>
   <div>
+		<p>{{ { at, atExpiry } }}</p>
     <Nuxt />
   </div>
 </template>
+
+<script>
+import TokenService from '/api/services/TokenService'
+
+export default {
+	data () {
+		return {
+			at: '',
+			atExpiry: ''
+		}
+	},
+	async created () {
+		let tokenData = await TokenService.getToken()
+		this.at = tokenData.data.testToken
+		this.atExpiry = tokenData.data.expiry
+	}
+}
+</script>
 
 <style>
 html {

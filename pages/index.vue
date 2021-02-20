@@ -1,6 +1,6 @@
 <template>
   <div>
-    Auth app.
+    Auth App.
   </div>
 </template>
 

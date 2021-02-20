@@ -1,9 +1,10 @@
 const router = require('express').Router()
 const postsController = require('../controllers/postsController')
-const tokenService = require('../services/TokenService')
+const utils = require('../utils')
 
 router.get(
 	'/posts/user',
+	utils.authenticateToken,
 	postsController.userPosts
 )
 
