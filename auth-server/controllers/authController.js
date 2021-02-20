@@ -9,7 +9,7 @@ module.exports.register = async (req, res) => {
 	const usernameExists = await User.findOne({
 		username: req.body.username
 	})
-	if (usernameExists) return res.status(409).json({ message: 'Username already taken.' })
+	if (usernameExists) return res.status(409).json({ message: 'Username is taken.' })
 
 	// Check if the email is already in use
 	const emailExists = await User.findOne({
@@ -38,6 +38,8 @@ module.exports.register = async (req, res) => {
 }
 
 module.exports.login = async (req, res) => {
+	// TODO: if already logged in dont try to log in
+
 	// Check if user exists in DB
 	const user = await User.findOne({
 		username: req.body.username

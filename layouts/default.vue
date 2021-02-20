@@ -1,6 +1,6 @@
 <template>
   <div>
-		<p>{{ { at, atExpiry } }}</p>
+		<!-- <p>{{ { at, atExpiry } }}</p> -->
     <Nuxt />
   </div>
 </template>
@@ -11,14 +11,23 @@ import TokenService from '/api/services/TokenService'
 export default {
 	data () {
 		return {
-			at: '',
-			atExpiry: ''
+			at: null,
+			atExpiry: null
 		}
 	},
 	async created () {
-		let tokenData = await TokenService.getToken()
-		this.at = tokenData.data.testToken
-		this.atExpiry = tokenData.data.expiry
+		// await this.silentRefresh()
+
+		// setInterval(async () => {
+		// 	await this.silentRefresh()
+		// }, this.atExpiry)
+	},
+	methods: {
+		async silentRefresh () {
+			let tokenData = await TokenService.getToken()
+			this.at = tokenData.data.testToken
+			this.atExpiry = tokenData.data.expiry
+		}
 	}
 }
 </script>
