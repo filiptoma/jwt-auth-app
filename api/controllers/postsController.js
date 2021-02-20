@@ -8,7 +8,7 @@ module.exports.userPosts = async (req, res) => {
 		const userPosts = await Post.find({ author: req.user.username })
 		res.status(200).json({ posts: userPosts })
 	} catch (error) {
-		res.status(400).send(error)
+		res.status(500).send(error)
 	}
 }
 
@@ -17,6 +17,6 @@ module.exports.allPosts = async (req, res) => {
 		const allPosts = await Post.find()
 		res.status(200).json({ posts: allPosts })
 	} catch (error) {
-		res.status(400).send(error)
+		res.status(500).send(error)
 	}
 }
