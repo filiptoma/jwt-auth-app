@@ -1,15 +1,8 @@
 <template>
-	<div class="text-gray-800 mx-5 my-20">
+	<div class="mx-5 my-20">
 		<div class="max-w-md m-auto">
-			<!-- Form & Register errors -->
-			<div
-				v-show="authError"
-				class="bg-red-500"
-			>
-				<p class="text-center text-white font-semibold py-2">
-					{{ authError }}
-				</p>
-			</div>
+
+			<AuthError :message="authError" v-show="authError" />
 
 			<h1 class="text-2xl font-bold my-6">Register</h1>
 
@@ -61,6 +54,8 @@
 import { object, string } from 'yup'
 import AuthService from '/api/services/AuthService'
 
+import AuthError from '/components/AuthError'
+
 const registerFormSchema = object().shape({
 	username: string()
 							.required('Please provide all data.')
@@ -75,6 +70,10 @@ const registerFormSchema = object().shape({
 })
 
 export default {
+	components: {
+		AuthError
+	},
+
 	data () {
 		return {
 			authValues: {
@@ -85,6 +84,7 @@ export default {
 			authError: ''
 		}
 	},
+
 	methods: {
 		showAuthError () {
 			setTimeout(() => this.authError = '', 4000)
@@ -92,6 +92,7 @@ export default {
 			document.getElementById('email').classList.add('border-red-500')
 			document.getElementById('password').classList.add('border-red-500')
 		},
+
 		validateForm () {
 			registerFormSchema
 				.validate(this.authValues)
@@ -107,6 +108,7 @@ export default {
 					this.showAuthError()
 				})
 		},
+
 		async registerUser () {
 			try {
 				await AuthService.registerUser(this.authValues)
@@ -122,7 +124,3 @@ export default {
 	}
 }
 </script>
-
-<style>
-
-</style>

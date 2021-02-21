@@ -7,6 +7,7 @@ require('dotenv').config()
 
 // Init body-parser options (inbuilt with Express)
 app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 const cors = require('cors')
 // Has to be above app.use(routes)

@@ -1,15 +1,8 @@
 <template>
-	<div class="text-gray-800 mx-5 my-20">
+	<div class="mx-5 my-20">
 		<div class="max-w-md m-auto">
-			<!-- Form & Loginerrors -->
-			<div
-				v-show="authError"
-				class="bg-red-500"
-			>
-				<p class="text-center text-white font-semibold py-2">
-					{{ authError }}
-				</p>
-			</div>
+
+			<AuthError :message="authError" v-show="authError" />
 
 			<h1 class="text-2xl font-bold my-6">Sign In</h1>
 
@@ -51,12 +44,17 @@
 
 <script>
 import { object, string } from 'yup'
+import { mapActions } from 'vuex'
+
 import AuthService from '/api/services/AuthService'
+
+import AuthError from '/components/AuthError'
 
 const loginFormSchema = object().shape({
 	username: string()
 							.required('Incorrect username or password.')
-							.min(3, 'Incorrect username or password.').max(15, 'Incorrect username or password.')
+							.min(3, 'Incorrect username or password.')
+							.max(15, 'Incorrect username or password.')
 							.matches(/^[a-zA-Z0-9._]+$/, 'Incorrect username or password.'),
 	password: string()
 							.required('Incorrect username or password.')
@@ -64,6 +62,12 @@ const loginFormSchema = object().shape({
 })
 
 export default {
+	middleware: 'guest',
+
+	components: {
+		AuthError
+	},
+
 	data () {
 		return {
 			authValues: {
@@ -73,12 +77,18 @@ export default {
 			authError: ''
 		}
 	},
+
 	methods: {
+		...mapActions([
+			'saveLoginData'  // maps `this.saveLoginData()` to `this.$store.dispatch('saveLoginData')`
+		]),
+
 		showAuthError () {
 			setTimeout(() => this.authError = '', 4000)
 			document.getElementById('username').classList.add('border-red-500')
 			document.getElementById('password').classList.add('border-red-500')
 		},
+
 		validateForm () {
 			loginFormSchema
 				.validate(this.authValues)
@@ -94,9 +104,14 @@ export default {
 					this.showAuthError()
 				})
 		},
+
 		async loginUser () {
 			try {
-				await AuthService.loginUser(this.authValues)
+				const res = await AuthService.loginUser(this.authValues)
+				this.saveLoginData({
+					userData: res.data.userData,
+					accessToken: res.data.accessToken
+				})
 			} catch (error) {
 				this.authError = error.response.data.message
 				this.showAuthError()
@@ -105,7 +120,3 @@ export default {
 	}
 }
 </script>
-
-<style>
-
-</style>

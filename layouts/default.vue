@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="text-gray-800">
 		<!-- <p>{{ { at, atExpiry } }}</p> -->
+		<AppHeader />
     <Nuxt />
   </div>
 </template>
@@ -8,13 +9,20 @@
 <script>
 import TokenService from '/api/services/TokenService'
 
+import AppHeader from '/components/AppHeader'
+
 export default {
+	components: {
+		AppHeader
+	},
+
 	data () {
 		return {
 			at: null,
-			atExpiry: null
+			atExpiry: null,
 		}
 	},
+
 	async created () {
 		// await this.silentRefresh()
 
@@ -22,6 +30,7 @@ export default {
 		// 	await this.silentRefresh()
 		// }, this.atExpiry)
 	},
+
 	methods: {
 		async silentRefresh () {
 			let tokenData = await TokenService.getToken()

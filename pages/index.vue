@@ -1,6 +1,6 @@
 <template>
-  <div class="w-11/12 m-auto text-gray-800">
-    <h1 class="text-3xl text-center font-bold my-10">Auth App DEMO - using JWT technology</h1>
+  <div class="w-11/12 m-auto">
+    <h1 class="text-3xl text-center font-bold mt-16 mb-10">Auth App DEMO - using JWT technology</h1>
 
 		<div class="flex flex-wrap justify-center">
 			<div class="w-56 border-4 border-purple-200 p-5 m-5">
@@ -30,20 +30,13 @@
 					</li>
 					<li>
 						<nuxt-link
-							to="/posts"
+							to="/profile"
 							class="hover:underline"
-						>My Posts</nuxt-link>
+						>My Profile</nuxt-link>
 					</li>
 				</ul>
 			</div>
 		</div>
+
   </div>
 </template>
-
-<script>
-export default {}
-</script>
-
-<style>
-
-</style>

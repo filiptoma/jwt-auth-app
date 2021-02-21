@@ -5,8 +5,8 @@ module.exports.userPosts = async (req, res) => {
 	// const userData = req.user
 
 	try {
-		const userPosts = await Post.find({ author: req.user.username })
-		res.status(200).json({ posts: userPosts })
+		const posts = await Post.find({ author: req.user.username })
+		res.status(200).json({ posts })
 	} catch (error) {
 		res.status(500).send(error)
 	}
@@ -14,8 +14,8 @@ module.exports.userPosts = async (req, res) => {
 
 module.exports.allPosts = async (req, res) => {
 	try {
-		const allPosts = await Post.find()
-		res.status(200).json({ posts: allPosts })
+		const posts = await Post.find()
+		res.status(200).json({ posts })
 	} catch (error) {
 		res.status(500).send(error)
 	}

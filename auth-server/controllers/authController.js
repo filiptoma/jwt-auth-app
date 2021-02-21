@@ -1,6 +1,8 @@
 const User = require('../../db/models/User')
 const RefreshToken = require('../../db/models/RefreshToken')
 
+// TODO: admin controller, well protected
+
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
@@ -28,7 +30,7 @@ module.exports.register = async (req, res) => {
 		password: hashedPassword
 	})
 
-	// Try to save the record to DB
+	// Save the record to DB
 	try {
 		await user.save()
 		res.status(201).end()
@@ -58,33 +60,34 @@ module.exports.login = async (req, res) => {
 		username: user.username
 	}
 
-	// Assign auth tokens to user
-	const AT = jwt.sign(
+	// Create web tokens with user data
+	const accessToken = jwt.sign(
 		userData,
 		process.env.AT_SECRET,
 		{ expiresIn: '15m' }
 	)
-	const RT = jwt.sign(userData, process.env.RT_SECRET)
+	const refreshToken = jwt.sign(userData, process.env.RT_SECRET)
 
-	// Initialize Refresh Token record
-	const refToken = new RefreshToken({ RT: RT })
-	// Save Refresh Token to DB
+	// Save refresh token to DB
 	try {
-		await refToken.save()
+		await new RefreshToken({ RT: refreshToken }).save()
 	} catch (error) {
 		res.status(500).send(error)
 	}
 
-	// Send auth tokens to front end
-	res.status(200).json({ AT: AT, RT: RT })
+	// Send httpOnly cookie with refresh token to frontend
+	// TODO:
+
+	// Send user data & access token payload to frontend
+	res.status(200).json({ userData, accessToken })
 }
 
 module.exports.logout = async (req, res) => {
 	// TODO: if user did not provide any token
 
-	// Delete Refresh Token from DB
+	// Delete refresh token from DB
 	try {
-		await RefreshToken.deleteOne({ RT: req.body.rt })
+		await RefreshToken.deleteOne({ RT: req.body.refreshToken })
 		res.status(204).end()
 	} catch (error) {
 		res.status(500).send(error)
