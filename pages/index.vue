@@ -1,20 +1,24 @@
 <template>
-  <div class="w-11/12 m-auto">
-    <h1 class="text-3xl text-center font-bold mt-16 mb-10">Auth App DEMO - using JWT technology</h1>
+  <div class="mx-5 my-10 sm:my-32">
+    <h1 class="text-4xl sm:text-5xl text-center font-bold mt-16 mb-10">
+			<span class="text-blue-900">Auth App DEMO</span>
+			<br />
+			<span class="text-2xl sm:text-3xl font-medium">using JWT technology</span>
+		</h1>
 
-		<div class="flex flex-wrap justify-center">
-			<div class="w-56 border-4 border-purple-200 p-5 m-5">
-				<p class="text-lg font-semibold mb-5">Tech stack used</p>
+		<div class="flex flex-wrap sm:justify-center">
+			<div class="m-5 sm:m-10">
+				<p class="text-2xl text-blue-900 font-bold my-5">Tech stack used</p>
 				<ul>
-					<li>Nuxt.js - front end</li>
-					<li>Express.js - back end</li>
-					<li>MongoDB - database</li>
-					<li>Yup - form validation</li>
+					<li><span class="font-semibold">Nuxt.js</span> - front end</li>
+					<li><span class="font-semibold">Express.js</span> - back end</li>
+					<li><span class="font-semibold">MongoDB</span> - database</li>
+					<li><span class="font-semibold">Yup</span> - form validation</li>
 				</ul>
 			</div>
 
-			<div class="w-56 border-4 border-purple-200 p-5 m-5">
-				<p class="text-lg font-semibold mb-5">Routes</p>
+			<div class="m-5 sm:m-10">
+				<p class="text-2xl text-blue-900 font-bold my-5">Routes</p>
 				<ul>
 					<li>
 						<nuxt-link

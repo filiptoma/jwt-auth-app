@@ -1,5 +1,5 @@
 <template>
-  <div class="text-gray-800">
+  <div class="text-gray-600">
 		<!-- <p>{{ { at, atExpiry } }}</p> -->
 		<AppHeader />
     <Nuxt />
@@ -43,7 +43,7 @@ export default {
 
 <style>
 html {
-  font-family: 'Catamaran', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;

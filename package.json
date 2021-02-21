@@ -19,6 +19,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.15",
     "nuxt": "^2.14.12",
+    "vue-unicons": "^2.3.0",
     "yup": "^0.32.9"
   },
   "devDependencies": {

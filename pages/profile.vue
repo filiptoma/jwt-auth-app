@@ -1,47 +1,47 @@
 <template>
-	<div class="m-5">
+	<div class="my-5 sm:my-20">
 		<div class="flex flex-wrap">
 
-			<section class="mx-10">
-				<h1 class="text-2xl font-bold my-5">User info from web token</h1>
-				<ul>
+			<section class="mx-5 sm:mx-10">
+				<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold">User info from web token</h1>
+				<ul class="my-8">
 					<li>
-						<span class="font-bold">Username</span>
+						<span class="text-blue-900 font-bold">Username</span>
 						{{ loggedInUser.username }}
 					</li>
 					<li>
-						<span class="font-bold">Is authenticated?</span>
+						<span class="text-blue-900 font-bold">Is authenticated?</span>
 						{{ isAuthenticated }}
 					</li>
 					<li>
-						<span class="font-bold">Part of token</span>
-						{{ accessToken.slice(accessToken.length - 20) }}
+						<span class="text-blue-900 font-bold">Token</span>
+						...{{ accessToken.slice(accessToken.length - 20) }}...
 					</li>
 				</ul>
 			</section>
 
-			<section class="mx-10">
-				<h1 class="text-2xl font-bold my-5">User info from API request</h1>
-				<ul>
+			<section class="mx-5 sm:mx-10">
+				<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold">User info from API request</h1>
+				<ul class="my-8">
 					<li>
-						<span class="font-bold">User ID</span>
+						<span class="text-blue-900 font-bold">User ID</span>
 						{{ profile._id }}
 					</li>
 					<li>
-						<span class="font-bold">Username</span>
+						<span class="text-blue-900 font-bold">Username</span>
 						{{ profile.username }}
 					</li>
 					<li>
-						<span class="font-bold">E-mail</span>
+						<span class="text-blue-900 font-bold">E-mail</span>
 						{{ profile.email }}
 					</li>
 					<li>
-						<span class="font-bold">Password</span>
-						{{ profile.password }}
+						<span class="text-blue-900 font-bold">Password</span>
+						...{{ profile.password.slice(profile.password.length - 20) }}...
 					</li>
 					<li>
-						<span class="font-bold">Registration date</span>
-						{{ profile.registrationDate }}
+						<span class="text-blue-900 font-bold">Registration date</span>
+						{{ parseDate(profile.registrationDate) }}
 					</li>
 				</ul>
 			</section>
@@ -69,6 +69,16 @@ export default {
 			'isAuthenticated',
 			'accessToken'
 		])
+	},
+
+	methods: {
+		parseDate (rawDate) {
+			const dateAndTime = rawDate.split('T')
+			const date = dateAndTime[0].split('-')
+			const time = dateAndTime[1].slice(0, -1).split(':')
+
+			return `${date[2]}/${date[1]}/${date[0]}, ${time[0]}:${time[1]} UTC`
+		}
 	}
 }
 </script>

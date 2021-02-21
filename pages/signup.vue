@@ -1,49 +1,49 @@
 <template>
-	<div class="mx-5 my-20">
+	<div class="mx-5 my-10 sm:my-32">
 		<div class="max-w-md m-auto">
 
 			<AuthError :message="authError" v-show="authError" />
 
-			<h1 class="text-2xl font-bold my-6">Register</h1>
+			<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold my-10">Create Account</h1>
 
 			<!-- Register form -->
 			<div>
 				<div class="flex flex-col my-3">
-					<label for="username">Username</label>
+					<label for="username" class="font-semibold">Username</label>
 					<input
 						id="username" type="text" name="username"
-						class="focus:outline-none border-4 border-purple-200 px-3 py-1"
+						class="focus:outline-none text-blue-900 border-b-4 border-gray-200 px-3 py-1"
 						v-model="authValues.username"
 					/>
 				</div>
 				<div class="flex flex-col my-3">
-					<label for="email">E-mail</label>
+					<label for="email" class="font-semibold">E-mail</label>
 					<input
 						id="email" type="email" name="email"
-						class="focus:outline-none border-4 border-purple-200 px-3 py-1"
+						class="focus:outline-none text-blue-900 border-b-4 border-gray-200 px-3 py-1"
 						v-model="authValues.email"
 					/>
 				</div>
 				<div class="flex flex-col my-3">
-					<label for="password">Password</label>
+					<label for="password" class="font-semibold">Password</label>
 					<input
 						id="password" type="password" name="password"
-						class="focus:outline-none border-4 border-purple-200 px-3 py-1"
+						class="focus:outline-none text-blue-900 border-b-4 border-gray-200 px-3 py-1"
 						v-model="authValues.password"
 					/>
 				</div>
 			</div>
 
 			<!-- Form Buttons -->
-			<div class="flex justify-between items-center my-6">
+			<div class="flex justify-between space-x-5 items-center my-6">
 				<nuxt-link
 					to="/login"
-					class="hover:underline font-semibold"
-				>Already have account?</nuxt-link>
+					class="hover:underline text-blue-900 font-semibold"
+				>I have account.</nuxt-link>
 				<button
 					@click="validateForm"
-					class="focus:outline-none bg-purple-500 font-semibold text-white px-8 py-4"
-				>Create Account</button>
+					class="focus:outline-none bg-blue-900 text-white font-bold px-8 py-4"
+				>Sign Up</button>
 			</div>
 
 		</div>
@@ -52,6 +52,8 @@
 
 <script>
 import { object, string } from 'yup'
+import { mapActions } from 'vuex'
+
 import AuthService from '/api/services/AuthService'
 
 import AuthError from '/components/AuthError'
@@ -70,6 +72,8 @@ const registerFormSchema = object().shape({
 })
 
 export default {
+	middleware: 'guest',
+
 	components: {
 		AuthError
 	},
@@ -86,6 +90,10 @@ export default {
 	},
 
 	methods: {
+		...mapActions([
+			'saveLoginData'
+		]),
+
 		showAuthError () {
 			setTimeout(() => this.authError = '', 4000)
 			document.getElementById('username').classList.add('border-red-500')
@@ -112,9 +120,13 @@ export default {
 		async registerUser () {
 			try {
 				await AuthService.registerUser(this.authValues)
-				await AuthService.loginUser({
+				const res = await AuthService.loginUser({
 					username: this.authValues.username,
 					password: this.authValues.password
+				})
+				this.saveLoginData({
+					userData: res.data.userData,
+					accessToken: res.data.accessToken
 				})
 			} catch (error) {
 				this.authError = error.response.data.message

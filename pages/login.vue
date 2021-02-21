@@ -1,40 +1,40 @@
 <template>
-	<div class="mx-5 my-20">
+	<div class="mx-5 my-10 sm:my-32">
 		<div class="max-w-md m-auto">
 
-			<AuthError :message="authError" v-show="authError" />
+			<AuthError :message="authError" v-if="authError" />
 
-			<h1 class="text-2xl font-bold my-6">Sign In</h1>
+			<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold my-10">Sign In</h1>
 
 			<!-- Login form -->
 			<div>
 				<div class="flex flex-col my-3">
-					<label for="username">Username</label>
+					<label for="username" class="font-semibold">Username</label>
 					<input
 						id="username" type="text" name="username"
-						class="focus:outline-none border-4 border-purple-200 px-3 py-1"
+						class="focus:outline-none text-blue-900 border-b-4 border-gray-200 px-3 py-1"
 						v-model="authValues.username"
 					/>
 				</div>
 				<div class="flex flex-col my-3">
-					<label for="password">Password</label>
+					<label for="password" class="font-semibold">Password</label>
 					<input
 						id="password" type="password" name="password"
-						class="focus:outline-none border-4 border-purple-200 px-3 py-1"
+						class="focus:outline-none text-blue-900 border-b-4 border-gray-200 px-3 py-1"
 						v-model="authValues.password"
 					/>
 				</div>
 			</div>
 
 			<!-- Form Buttons -->
-			<div class="flex justify-between items-center my-6">
+			<div class="flex justify-between space-x-5 items-center my-6">
 				<nuxt-link
 					to="/signup"
-					class="hover:underline font-semibold"
+					class="hover:underline text-blue-900 font-semibold"
 				>Create Account</nuxt-link>
 				<button
 					@click="validateForm"
-					class="focus:outline-none bg-purple-500 font-semibold text-white px-8 py-4"
+					class="focus:outline-none bg-blue-900 text-white font-bold px-8 py-4"
 				>Sign In</button>
 			</div>
 
