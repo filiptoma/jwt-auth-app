@@ -12,7 +12,14 @@ app.use(express.urlencoded({ extended: true }))
 const cors = require('cors')
 // Has to be above app.use(routes)
 // Allow requests only from this origin, refer npm cors docs for more
-app.use(cors({ origin: 'http://localhost:3000' }))
+app.use(cors({
+	origin: 'http://localhost:3000',
+	credentials: true
+}))
+
+// Middleware for parsing request.headers.cookie
+const cookieParser = require('cookie-parser')
+app.use(cookieParser())
 
 // Import auth API routes
 const routes = require('./routes')

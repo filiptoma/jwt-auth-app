@@ -11,6 +11,10 @@
 					<p class="text-xl text-blue-900 font-bold">
 						{{ loggedInUser.username }}
 					</p>
+					<button
+						@click="logoutUser"
+						class="focus:outline-none border-l-4 border-blue-900 px-2 my-2"
+					>Sign Out</button>
 				</div>
 				<p
 					v-else
@@ -74,6 +78,8 @@
 <script>
 import { mapGetters } from 'vuex'
 
+import AuthService from '/api/services/AuthService'
+
 export default {
 	name: 'AppHeader',
 
@@ -96,6 +102,11 @@ export default {
 			setTimeout(() => {
 				this.showMenu = !this.showMenu
 			}, 100)
+		},
+
+		async logoutUser () {
+			await AuthService.logoutUser()
+			console.log('Finished logging out...')
 		}
 	}
 }

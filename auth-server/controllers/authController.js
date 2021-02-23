@@ -76,7 +76,10 @@ module.exports.login = async (req, res) => {
 	}
 
 	// Send httpOnly cookie with refresh token to frontend
-	// TODO:
+	res.cookie('refreshToken', refreshToken, {
+		httpOnly: true,
+		sameSite: 'strict'
+	})
 
 	// Send user data & access token payload to frontend
 	res.status(200).json({ userData, accessToken })
@@ -87,7 +90,7 @@ module.exports.logout = async (req, res) => {
 
 	// Delete refresh token from DB
 	try {
-		await RefreshToken.deleteOne({ RT: req.body.refreshToken })
+		await RefreshToken.deleteOne({ RT: req.cookies['refreshToken'] })
 		res.status(204).end()
 	} catch (error) {
 		res.status(500).send(error)
