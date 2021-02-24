@@ -7,7 +7,8 @@ export const state = () => ({
 	notification: {
 		config: null,
 		timeoutId: null
-	}
+	},
+	activeSilentRefresh: false
 })
 
 export const mutations = {
@@ -37,7 +38,7 @@ export const mutations = {
 		state.auth.isLoggedIn = false
 	},
 
-	// Other mutations
+	// Notification mutations
 	setNotification (state, config) {
 		state.notification.config = config
 	},
@@ -48,6 +49,15 @@ export const mutations = {
 
 	unsetNotification (state) {
 		state.notification.config = null
+	},
+
+	// Silent refresh mutations
+	startSilentRefresh (state) {
+		state.activeSilentRefresh = true
+	},
+
+	stopSilentRefresh (state) {
+		state.activeSilentRefresh = false
 	}
 }
 

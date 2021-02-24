@@ -1,22 +1,26 @@
-import TokenService from '/api/services/TokenService'
+import TokenService from '~/api/services/TokenService'
 
-// Executed after calling this.$silentRefresh()
+// Manually executed by calling `$silentRefresh()`
 export default ({ store }, inject) => {
 	const silentRefresh = async (renewAccess, ms) => {
-		console.log('=== AUTO SILENT REFRESH - START ===')
+		console.log('=== SILENT REFRESH ===')
 		try {
-			console.log('Getting user data...')
 			const res = await renewAccess()
-			console.log('Saving user data...')
 			store.dispatch('saveUserData', {
 				userData: res.data.userData,
 				accessToken: res.data.accessToken
 			})
 			ms = res.data.expiry
-			console.log('=== AUTO SILENT REFRESH - END ===')
-			setTimeout(() => silentRefresh(renewAccess, ms), ms)
-		} catch (error) { return }
+			setTimeout(async () => await silentRefresh(renewAccess, ms), ms)
+		} catch (error) {
+			return store.commit('stopSilentRefresh')
+		}
 	}
 
-	inject('silentRefresh', () => silentRefresh(() => TokenService.getToken(), null))
+	const startSilentRefresh = async () => {
+		store.commit('startSilentRefresh')
+		await silentRefresh(() => TokenService.getToken(), null)
+	}
+
+	inject('silentRefresh', startSilentRefresh)
 }
