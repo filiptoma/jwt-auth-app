@@ -6,7 +6,7 @@
 			<span class="text-2xl sm:text-3xl font-medium">using JWT technology</span>
 		</h1>
 
-		<div class="flex flex-wrap sm:justify-center">
+		<div class="flex flex-wrap justify-center">
 			<div class="m-5 sm:m-10">
 				<p class="text-2xl text-blue-900 font-bold my-5">Tech stack used</p>
 				<ul>

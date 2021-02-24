@@ -57,17 +57,17 @@
 				<nuxt-link
 					@click.native="menuRedirect"
 					to="/"
-					class="text-blue-900 font-bold m-3"
+					class="text-blue-900 text-lg font-bold m-3"
 				>Home</nuxt-link>
 				<nuxt-link
 					@click.native="menuRedirect"
 					to="/login"
-					class="text-blue-900 font-bold m-3"
+					class="text-blue-900 text-lg font-bold m-3"
 				>Sign In</nuxt-link>
 				<nuxt-link
 					@click.native="menuRedirect"
 					to="/profile"
-					class="text-blue-900 font-bold m-3"
+					class="text-blue-900 text-lg font-bold m-3"
 				>My Profile</nuxt-link>
 			</div>
 		</div>
