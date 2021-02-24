@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
-const rtSchema = new mongoose.Schema({
-	RT: { type: String }
+const tokenSchema = new mongoose.Schema({
+	refreshToken: { type: String }
 })
 
-module.exports = mongoose.model('RefreshToken', rtSchema, 'rts')
+module.exports = mongoose.model('RefreshToken', tokenSchema, 'tokens')

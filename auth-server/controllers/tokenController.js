@@ -9,7 +9,7 @@ module.exports.renew = async (req, res) => {
 	if (!refreshToken) return res.status(401).json({ message: 'Unauthorized!' })
 
 	// Refresh token not in DB
-	const refreshTokenExists = await RefreshToken.findOne({ RT: refreshToken })
+	const refreshTokenExists = await RefreshToken.findOne({ refreshToken: refreshToken })
 	if (!refreshTokenExists) return res.status(403).json({ message: 'Forbidden!' })
 
 	jwt.verify(

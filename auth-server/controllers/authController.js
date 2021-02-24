@@ -71,7 +71,7 @@ module.exports.login = async (req, res) => {
 
 	// Save refresh token to DB
 	try {
-		await new RefreshToken({ RT: refreshToken }).save()
+		await new RefreshToken({ refreshToken: refreshToken }).save()
 	} catch (error) {
 		res.status(500).send(error)
 	}
