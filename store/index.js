@@ -3,7 +3,8 @@ export const state = () => ({
 		isLoggedIn: false,
 		user: null,
 		accessToken: null
-	}
+	},
+	notification: null
 })
 
 export const mutations = {
@@ -31,6 +32,15 @@ export const mutations = {
 
 	hasLoggedOut (state) {
 		state.auth.isLoggedIn = false
+	},
+
+	// Other mutations
+	setNotification (state, config) {
+		state.notification = config
+	},
+
+	unsetNotification (state) {
+		state.notification = null
 	}
 }
 
@@ -45,6 +55,13 @@ export const actions = {
 		commit('unsetUser')
 		commit('unsetAccessToken')
 		commit('hasLoggedOut')
+	},
+
+	showNotification ({ commit }, config) {
+		commit('setNotification', config)
+		setTimeout(() => {
+			commit('unsetNotification')
+		}, 4000)
 	}
 }
 
@@ -59,5 +76,9 @@ export const getters = {
 
 	accessToken (state) {
 		return state.auth.accessToken
+	},
+
+	getNotification (state) {
+		return state.notification
 	}
 }

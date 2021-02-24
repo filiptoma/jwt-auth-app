@@ -2,8 +2,6 @@
 	<div class="mx-5 my-10 sm:my-32">
 		<div class="max-w-md m-auto">
 
-			<AuthError :message="authError" v-show="authError" />
-
 			<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold my-10">Create Account</h1>
 
 			<!-- Register form -->
@@ -56,8 +54,6 @@ import { mapActions } from 'vuex'
 
 import AuthService from '/api/services/AuthService'
 
-import AuthError from '/components/AuthError'
-
 const registerFormSchema = object().shape({
 	username: string()
 							.required('Please provide all data.')
@@ -74,10 +70,6 @@ const registerFormSchema = object().shape({
 export default {
 	middleware: 'guest',
 
-	components: {
-		AuthError
-	},
-
 	data () {
 		return {
 			authValues: {
@@ -91,11 +83,11 @@ export default {
 
 	methods: {
 		...mapActions([
-			'saveUserData'
+			'saveUserData',
+			'showNotification'
 		]),
 
-		showAuthError () {
-			setTimeout(() => this.authError = '', 4000)
+		showFormError () {
 			document.getElementById('username').classList.add('border-red-500')
 			document.getElementById('email').classList.add('border-red-500')
 			document.getElementById('password').classList.add('border-red-500')
@@ -108,12 +100,20 @@ export default {
 					this.authError = ''
 					await this.registerUser()
 					if (!this.authError) {
+						this.showNotification({
+							message: 'Successfully signed in!',
+							color: 'green'
+						})
 						this.$router.push('/')
 					}
 				})
 				.catch (error => {
 					this.authError = error.message
-					this.showAuthError()
+					this.showFormError()
+					this.showNotification({
+						message: this.authError,
+						color: 'red'
+					})
 				})
 		},
 
@@ -131,7 +131,11 @@ export default {
 				setTimeout(() => this.$silentRefresh(), res.data.expiry)
 			} catch (error) {
 				this.authError = error.response.data.message
-				this.showAuthError()
+				this.showFormError()
+				this.showNotification({
+					message: this.authError,
+					color: 'red'
+				})
 			}
 		}
 	}

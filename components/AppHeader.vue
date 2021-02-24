@@ -2,7 +2,7 @@
 	<div>
 		<div class="flex justify-between items-center border-b-2 border-gray-200 p-5">
 
-			<!-- Logged in user -->
+			<!-- Logged in user info -->
 			<div class="flex flex-col">
 
 				<h1>Using the app as:</h1>
@@ -15,7 +15,6 @@
 						@click="logoutUser"
 						class="focus:outline-none border-l-4 border-blue-900 px-2 my-2"
 					>Sign Out</button>
-					<p class="text-sm">{{ accessToken.slice(accessToken.length - 20) }}</p>
 				</div>
 				<p
 					v-else
@@ -73,6 +72,9 @@
 			</div>
 		</div>
 
+		<!-- Notification -->
+		<Notification v-if="getNotification" />
+
 	</div>
 </template>
 
@@ -82,8 +84,14 @@ import { mapActions } from 'vuex'
 
 import AuthService from '/api/services/AuthService'
 
+import Notification from '/components/Notification'
+
 export default {
 	name: 'AppHeader',
+
+	components: {
+		Notification
+	},
 
 	data () {
 		return {
@@ -95,13 +103,15 @@ export default {
 		...mapGetters([
 			'isAuthenticated',
 			'loggedInUser',
-			'accessToken'
+			'accessToken',
+			'getNotification'
 		]),
 	},
 
 	methods: {
 		...mapActions([
-			'removeUserData'
+			'removeUserData',
+			'showNotification'
 		]),
 
 		menuRedirect () {
@@ -113,6 +123,10 @@ export default {
 		async logoutUser () {
 			await AuthService.logoutUser()
 			this.removeUserData()
+			this.showNotification({
+				message: 'Successfully logged out!',
+				color: 'green'
+			})
 			this.$router.push('/')
 		},
 	}
