@@ -2,7 +2,11 @@ import axios from 'axios'
 
 class TokenService {
 	static getToken () {
-		return axios.get('http://localhost:4000/token/test')
+		return axios.post('/auth/token')
+	}
+
+	static getTestToken () {
+		return axios.get('/auth/token/test')
 	}
 }
 

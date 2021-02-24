@@ -80,7 +80,7 @@ export default {
 
 	methods: {
 		...mapActions([
-			'saveLoginData'  // maps `this.saveLoginData()` to `this.$store.dispatch('saveLoginData')`
+			'saveUserData'  // maps `this.saveLoginData()` to `this.$store.dispatch('saveLoginData')`
 		]),
 
 		showAuthError () {
@@ -108,10 +108,11 @@ export default {
 		async loginUser () {
 			try {
 				const res = await AuthService.loginUser(this.authValues)
-				this.saveLoginData({
+				this.saveUserData({
 					userData: res.data.userData,
 					accessToken: res.data.accessToken
 				})
+				setTimeout(() => this.$silentRefresh(), res.data.expiry)
 			} catch (error) {
 				this.authError = error.response.data.message
 				this.showAuthError()

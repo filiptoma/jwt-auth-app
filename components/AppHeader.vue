@@ -15,6 +15,7 @@
 						@click="logoutUser"
 						class="focus:outline-none border-l-4 border-blue-900 px-2 my-2"
 					>Sign Out</button>
+					<p class="text-sm">{{ accessToken.slice(accessToken.length - 20) }}</p>
 				</div>
 				<p
 					v-else
@@ -24,6 +25,10 @@
 
 			<!-- Navbar -->
 			<div class="flex flex-wrap justify-end text-lg">
+				<button
+					@click="customFunc"
+					class="hidden sm:block hover:underline mx-3"
+				>Func</button>
 				<nuxt-link
 					to="/"
 					class="hidden sm:block hover:underline text-blue-900 font-bold mx-3"
@@ -79,6 +84,7 @@
 import { mapGetters } from 'vuex'
 
 import AuthService from '/api/services/AuthService'
+import TokenService from '/api/services/TokenService'
 
 export default {
 	name: 'AppHeader',
@@ -107,6 +113,12 @@ export default {
 		async logoutUser () {
 			await AuthService.logoutUser()
 			console.log('Finished logging out...')
+		},
+
+		customFunc () {
+			console.log('Manually called plugin...')
+			this.$silentRefresh()
+			console.log('Finished!')
 		}
 	}
 }

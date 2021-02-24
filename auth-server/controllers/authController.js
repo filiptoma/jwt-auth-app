@@ -59,12 +59,13 @@ module.exports.login = async (req, res) => {
 	const userData = {
 		username: user.username
 	}
+	const expiry = 5000
 
 	// Create web tokens with user data
 	const accessToken = jwt.sign(
 		userData,
 		process.env.AT_SECRET,
-		{ expiresIn: '15m' }
+		{ expiresIn: '6s' }
 	)
 	const refreshToken = jwt.sign(userData, process.env.RT_SECRET)
 
@@ -78,11 +79,11 @@ module.exports.login = async (req, res) => {
 	// Send httpOnly cookie with refresh token to frontend
 	res.cookie('refreshToken', refreshToken, {
 		httpOnly: true,
-		sameSite: 'strict'
+		sameSite: false
 	})
 
 	// Send user data & access token payload to frontend
-	res.status(200).json({ userData, accessToken })
+	res.status(200).json({ userData, accessToken, expiry })
 }
 
 module.exports.logout = async (req, res) => {

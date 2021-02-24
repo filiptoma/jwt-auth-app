@@ -21,7 +21,7 @@ export const mutations = {
 }
 
 export const actions = {
-	saveLoginData ({ commit }, { userData, accessToken }) {
+	saveUserData ({ commit }, { userData, accessToken }) {
 		commit('setUser', userData)
 		commit('setAccessToken', accessToken)
 		commit('hasLoggedIn')

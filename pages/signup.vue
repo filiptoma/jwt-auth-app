@@ -91,7 +91,7 @@ export default {
 
 	methods: {
 		...mapActions([
-			'saveLoginData'
+			'saveUserData'
 		]),
 
 		showAuthError () {
@@ -124,10 +124,11 @@ export default {
 					username: this.authValues.username,
 					password: this.authValues.password
 				})
-				this.saveLoginData({
+				this.saveUserData({
 					userData: res.data.userData,
 					accessToken: res.data.accessToken
 				})
+				setTimeout(() => this.$silentRefresh(), res.data.expiry)
 			} catch (error) {
 				this.authError = error.response.data.message
 				this.showAuthError()

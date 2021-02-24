@@ -22,7 +22,9 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-		{ src: '~/plugins/vue-unicons', mode: 'client' }
+		{ src: '~/plugins/vue-unicons', mode: 'client' },
+		{ src: '~/plugins/auto-silent-refresh', mode: 'client' },
+		{ src: '~/plugins/silent-refresh', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -41,7 +43,14 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+		proxy: true
+	},
+
+	proxy: {
+		'/api/': 'http://localhost:3000',
+		'/auth/': 'http://localhost:4000',
+	},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
