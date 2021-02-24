@@ -56,6 +56,7 @@ import { mapGetters } from 'vuex'
 import UserService from '/api/services/UserService'
 
 export default {
+	transition: 'slide-bottom',
 	middleware: 'user',
 
 	async asyncData ({ store }) {

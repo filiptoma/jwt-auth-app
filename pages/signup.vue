@@ -68,6 +68,7 @@ const registerFormSchema = object().shape({
 })
 
 export default {
+	transition: 'slide-bottom',
 	middleware: 'guest',
 
 	data () {
