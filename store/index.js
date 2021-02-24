@@ -4,7 +4,10 @@ export const state = () => ({
 		user: null,
 		accessToken: null
 	},
-	notification: null
+	notification: {
+		config: null,
+		timeoutId: null
+	}
 })
 
 export const mutations = {
@@ -36,11 +39,15 @@ export const mutations = {
 
 	// Other mutations
 	setNotification (state, config) {
-		state.notification = config
+		state.notification.config = config
+	},
+
+	setNotificationTimeout (state, timeoutId) {
+		state.notification.timeoutId = timeoutId
 	},
 
 	unsetNotification (state) {
-		state.notification = null
+		state.notification.config = null
 	}
 }
 
@@ -57,11 +64,13 @@ export const actions = {
 		commit('hasLoggedOut')
 	},
 
-	showNotification ({ commit }, config) {
+	showNotification ({ commit, state }, config) {
+		clearTimeout(state.notification.timeoutId)
 		commit('setNotification', config)
-		setTimeout(() => {
+		const timeoutId = setTimeout(() => {
 			commit('unsetNotification')
 		}, 4000)
+		commit('setNotificationTimeout', timeoutId)
 	}
 }
 
@@ -79,6 +88,6 @@ export const getters = {
 	},
 
 	getNotification (state) {
-		return state.notification
+		return state.notification.config
 	}
 }

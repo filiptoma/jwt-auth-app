@@ -14,7 +14,7 @@
 					<button
 						@click="logoutUser"
 						class="focus:outline-none border-l-4 border-blue-900 px-2 my-2"
-					>Sign Out</button>
+					>👋 Sign Out</button>
 				</div>
 				<p
 					v-else
@@ -125,7 +125,7 @@ export default {
 			this.removeUserData()
 			this.showNotification({
 				message: 'Successfully logged out!',
-				color: 'green'
+				type: 'success'
 			})
 			this.$router.push('/')
 		},

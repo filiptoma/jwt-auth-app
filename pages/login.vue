@@ -90,7 +90,7 @@ export default {
 					if (!this.authError) {
 						this.showNotification({
 							message: 'Successfully signed in!',
-							color: 'green'
+							type: 'success'
 						})
 						this.$router.push('/')
 					}
@@ -100,7 +100,7 @@ export default {
 					this.showFormError()
 					this.showNotification({
 						message: this.authError,
-						color: 'red'
+						type: 'error'
 					})
 				})
 		},
@@ -118,7 +118,7 @@ export default {
 				this.showFormError()
 				this.showNotification({
 					message: this.authError,
-					color: 'red'
+					type: 'error'
 				})
 			}
 		}

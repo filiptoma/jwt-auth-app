@@ -1,7 +1,7 @@
 <template>
-	<div :class="`bg-${getNotification.color}-500`">
+	<div :class="`bg-${color[getNotification.type]}`">
 		<p class="text-center text-white font-semibold py-2">
-			{{ getNotification.message }}
+			{{ emoji[getNotification.type] }} {{ getNotification.message }}
 		</p>
 	</div>
 </template>
@@ -11,6 +11,19 @@ import { mapGetters } from 'vuex'
 
 export default {
 	name: 'Notification',
+
+	data () {
+		return {
+			emoji: {
+				success: '🎉',
+				error: '🤔'
+			},
+			color: {
+				success: 'green-500',
+				error: 'red-500'
+			}
+		}
+	},
 
 	computed: {
 		...mapGetters([
