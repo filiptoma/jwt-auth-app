@@ -9,8 +9,7 @@ router.post('/auth/register', authController.register)
 router.post('/auth/login', authController.login)
 router.delete('/auth/logout', authController.logout)
 
-// Token routes
+// Token route
 router.post('/auth/token', tokenController.renew)
-router.get('/auth/token/test', tokenController.test)
 
 module.exports = router

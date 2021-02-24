@@ -25,10 +25,6 @@
 
 			<!-- Navbar -->
 			<div class="flex flex-wrap justify-end text-lg">
-				<button
-					@click="customFunc"
-					class="hidden sm:block hover:underline mx-3"
-				>Func</button>
 				<nuxt-link
 					to="/"
 					class="hidden sm:block hover:underline text-blue-900 font-bold mx-3"
@@ -82,9 +78,9 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 
 import AuthService from '/api/services/AuthService'
-import TokenService from '/api/services/TokenService'
 
 export default {
 	name: 'AppHeader',
@@ -104,6 +100,10 @@ export default {
 	},
 
 	methods: {
+		...mapActions([
+			'removeUserData'
+		]),
+
 		menuRedirect () {
 			setTimeout(() => {
 				this.showMenu = !this.showMenu
@@ -112,14 +112,9 @@ export default {
 
 		async logoutUser () {
 			await AuthService.logoutUser()
-			console.log('Finished logging out...')
+			this.removeUserData()
+			this.$router.push('/')
 		},
-
-		customFunc () {
-			console.log('Manually called plugin...')
-			this.$silentRefresh()
-			console.log('Finished!')
-		}
 	}
 }
 </script>

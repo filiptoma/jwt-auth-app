@@ -1,7 +1,6 @@
 const RefreshToken = require('../../db/models/RefreshToken')
 
 const jwt = require('jsonwebtoken')
-const crypto = require('crypto')
 
 module.exports.renew = async (req, res) => {
 	const refreshToken = req.cookies['refreshToken']
@@ -31,8 +30,4 @@ module.exports.renew = async (req, res) => {
 			res.status(200).json({ userData, accessToken, expiry })
 		}
 	)
-}
-
-module.exports.test = (req, res) => {
-	res.status(200).json({ testToken: crypto.randomBytes(10).toString('hex'), expiry: 5000 })
 }

@@ -13,6 +13,7 @@
 					<li><span class="font-semibold">Nuxt.js</span> - front end</li>
 					<li><span class="font-semibold">Express.js</span> - back end</li>
 					<li><span class="font-semibold">MongoDB</span> - database</li>
+					<li><span class="font-semibold">Axios</span> - HTTP requests</li>
 					<li><span class="font-semibold">Yup</span> - form validation</li>
 				</ul>
 			</div>

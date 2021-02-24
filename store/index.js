@@ -7,6 +7,7 @@ export const state = () => ({
 })
 
 export const mutations = {
+	// Login mutations
 	setUser (state, userData) {
 		state.auth.user = userData
 	},
@@ -17,6 +18,19 @@ export const mutations = {
 
 	hasLoggedIn (state) {
 		state.auth.isLoggedIn = true
+	},
+
+	// Logout mutations
+	unsetUser (state) {
+		state.auth.user = null
+	},
+
+	unsetAccessToken (state) {
+		state.auth.accessToken = null
+	},
+
+	hasLoggedOut (state) {
+		state.auth.isLoggedIn = false
 	}
 }
 
@@ -25,6 +39,12 @@ export const actions = {
 		commit('setUser', userData)
 		commit('setAccessToken', accessToken)
 		commit('hasLoggedIn')
+	},
+
+	removeUserData ({ commit }) {
+		commit('unsetUser')
+		commit('unsetAccessToken')
+		commit('hasLoggedOut')
 	}
 }
 

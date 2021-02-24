@@ -91,7 +91,8 @@ module.exports.logout = async (req, res) => {
 
 	// Delete refresh token from DB
 	try {
-		await RefreshToken.deleteOne({ RT: req.cookies['refreshToken'] })
+		await RefreshToken.deleteOne({ refreshToken: req.cookies['refreshToken'] })
+		res.clearCookie('refreshToken')
 		res.status(204).end()
 	} catch (error) {
 		res.status(500).send(error)
