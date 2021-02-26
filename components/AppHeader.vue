@@ -15,6 +15,7 @@
 						@click="logoutUser"
 						class="focus:outline-none font-semibold py-1 my-2"
 					>👋 Sign Out</button>
+					<p class="text-xs">{{ accessToken.slice(accessToken.length - 20) }}</p>
 				</div>
 				<p
 					v-else

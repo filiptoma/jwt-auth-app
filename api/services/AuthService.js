@@ -10,7 +10,7 @@ class AuthService {
 	static loginUser ({ username, password }) {
 		return axios.post('http://localhost:4000/auth/login', {
 			username, password
-		})
+		}, { withCredentials: true })
 	}
 
 	static logoutUser () {

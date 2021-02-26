@@ -17,10 +17,5 @@ export default ({ store }, inject) => {
 		}
 	}
 
-	const startSilentRefresh = async () => {
-		store.commit('startSilentRefresh')
-		await silentRefresh(() => TokenService.getToken(), null)
-	}
-
-	inject('silentRefresh', startSilentRefresh)
+	inject('silentRefresh', async () => await silentRefresh(() => TokenService.getToken(), null))
 }

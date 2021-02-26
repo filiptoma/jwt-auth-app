@@ -40,7 +40,7 @@
 					</li>
 					<li>
 						<span class="text-blue-900 font-bold">Registration date</span>
-						{{ $parseDate(profile.registrationDate) }}
+						{{ profile.registrationDate }}
 					</li>
 				</ul>
 			</section>

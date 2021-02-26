@@ -15,7 +15,7 @@
 		<div v-for="(post, index) in posts" :key="index" class="my-8">
 			<h1 class="font-semibold text-lg">
 				<span class="text-blue-900 text-2xl font-bold">{{ post.author }}</span>
-				wrote at {{ $parseDate(post.createDate) }}
+				wrote at {{ post.createDate }}
 			</h1>
 			<p class="border-l-4 border-gray-200 px-3 my-2">{{ post.post }}</p>
 		</div>

@@ -10,6 +10,6 @@ router.post('/auth/login', authController.login)
 router.delete('/auth/logout', authController.logout)
 
 // Token route
-router.post('/auth/token', tokenController.renew)
+router.get('/auth/token', tokenController.renew)
 
 module.exports = router

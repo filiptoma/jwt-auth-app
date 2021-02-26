@@ -1,3 +1,5 @@
+import TokenService from '~/api/services/TokenService'
+
 export const state = () => ({
 	auth: {
 		isLoggedIn: false,
@@ -62,6 +64,16 @@ export const mutations = {
 }
 
 export const actions = {
+	async nuxtServerInit ({ dispatch }, { req }) {
+		try {
+			const res = await this.$axios.get('http://localhost:4000/auth/token')
+			dispatch('saveUserData', {
+				userData: res.data.userData,
+				accessToken: res.data.accessToken
+			})
+		} catch (error) { return }
+	},
+
 	saveUserData ({ commit }, { userData, accessToken }) {
 		commit('setUser', userData)
 		commit('setAccessToken', accessToken)
