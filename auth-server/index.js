@@ -9,9 +9,12 @@ require('dotenv').config()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// Here would be cors middleware - must be before app.use(routes)
-
-// TODO: delete cookie-parser and cors from dependencies
+// CORS middleware - must be before app.use(routes)
+const cors = require('cors')
+app.use(cors({
+	origin: 'http://localhost:3000',
+	credentials: true
+}))
 
 // Middleware for parsing request.headers.cookie
 const cookieParser = require('cookie-parser')

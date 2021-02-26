@@ -5,7 +5,7 @@
 			<!-- Logged in user info -->
 			<div class="flex flex-col">
 
-				<h1>Using the app as:</h1>
+				<h1 class="text-sm">Using the app as:</h1>
 
 				<div v-if="isAuthenticated">
 					<p class="text-xl text-blue-900 font-bold">
@@ -13,7 +13,7 @@
 					</p>
 					<button
 						@click="logoutUser"
-						class="focus:outline-none border-l-4 border-blue-900 px-2 my-2"
+						class="focus:outline-none font-semibold py-1 my-2"
 					>👋 Sign Out</button>
 				</div>
 				<p
@@ -38,11 +38,11 @@
 				>My Profile</nuxt-link>
 				<button
 					@click="showMenu = !showMenu"
-					class="z-30 sm:hidden hover:underline text-blue-900 font-bold"
+					class="z-30 sm:hidden hover:underline text-blue-900 font-bold px-2 py-1"
 				>
 					<client-only>
-						<unicon v-if="showMenu" name="multiply" fill="#1E3A8A" />
-						<unicon v-else name="bars" fill="#1E3A8A" />
+						<unicon v-if="showMenu" name="multiply" fill="#1E3A8A" width="28" height="28" />
+						<unicon v-else name="align-center-alt" fill="#1E3A8A" width="28" height="28" />
 					</client-only>
 				</button>
 			</div>
@@ -55,17 +55,17 @@
 		>
 			<div class="flex flex-col items-center my-10">
 				<nuxt-link
-					@click.native="menuRedirect"
+					@click.native="showMenu = !showMenu"
 					to="/"
 					class="text-blue-900 text-lg font-bold m-3"
 				>Home</nuxt-link>
 				<nuxt-link
-					@click.native="menuRedirect"
+					@click.native="showMenu = !showMenu"
 					to="/login"
 					class="text-blue-900 text-lg font-bold m-3"
 				>Sign In</nuxt-link>
 				<nuxt-link
-					@click.native="menuRedirect"
+					@click.native="showMenu = !showMenu"
 					to="/profile"
 					class="text-blue-900 text-lg font-bold m-3"
 				>My Profile</nuxt-link>
@@ -113,12 +113,6 @@ export default {
 			'removeUserData',
 			'showNotification'
 		]),
-
-		menuRedirect () {
-			setTimeout(() => {
-				this.showMenu = !this.showMenu
-			}, 100)
-		},
 
 		async logoutUser () {
 			await AuthService.logoutUser()

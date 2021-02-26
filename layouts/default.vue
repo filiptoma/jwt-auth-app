@@ -29,12 +29,12 @@ html {
 
 .slide-bottom-enter-active,
 .slide-bottom-leave-active {
-	transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+	transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
 }
 
 .slide-bottom-enter,
 .slide-bottom-leave-to {
 	opacity: 0;
-	transform: translate3d(15px, 0, 0);
+	transform: translate3d(10px, 0, 0);
 }
 </style>

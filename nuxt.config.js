@@ -17,14 +17,14 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
+  css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
 		{ src: '~/plugins/vue-unicons', mode: 'client' },
 		{ src: '~/plugins/define-user', mode: 'client' },
-		{ src: '~/plugins/silent-refresh', mode: 'client' }
+		{ src: '~/plugins/silent-refresh', mode: 'client' },
+		{ src: '~/plugins/parse-date', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -37,24 +37,14 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-  ],
+  modules: [],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-		proxy: true
-	},
+  axios: {},
 
-	proxy: {
-		'/api/': 'http://localhost:3000',
-		'/auth/': 'http://localhost:4000',
-	},
-
+	proxy: {},
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-  },
+  build: {},
 
 	serverMiddleware: [
 		'~/api/index.js'

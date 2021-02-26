@@ -1,6 +1,6 @@
 export default async ({ store, $silentRefresh, redirect }) => {
 	if (!store.state.activeSilentRefresh) {
-		await $silentRefresh()
+		await $silentRefresh
 	}
 	if (!store.state.auth.isLoggedIn) {
 		store.dispatch('showNotification', {

@@ -1,10 +1,9 @@
 <template>
-	<div class="my-5 sm:my-20">
-		<div class="flex flex-wrap">
+	<div class="mx-5 my-10 sm:my-32 sm:w-2/3 sm:mx-auto">
 
-			<section class="mx-5 sm:mx-10">
-				<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold">User info from web token</h1>
-				<ul class="my-8">
+			<section class="mb-16">
+				<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold my-6">User info from web token</h1>
+				<ul>
 					<li>
 						<span class="text-blue-900 font-bold">Username</span>
 						{{ loggedInUser.username }}
@@ -20,9 +19,9 @@
 				</ul>
 			</section>
 
-			<section class="mx-5 sm:mx-10">
-				<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold">User info from API request</h1>
-				<ul class="my-8">
+			<section>
+				<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold my-6">User info from API request</h1>
+				<ul>
 					<li>
 						<span class="text-blue-900 font-bold">User ID</span>
 						{{ profile._id }}
@@ -41,12 +40,11 @@
 					</li>
 					<li>
 						<span class="text-blue-900 font-bold">Registration date</span>
-						{{ parseDate(profile.registrationDate) }}
+						{{ $parseDate(profile.registrationDate) }}
 					</li>
 				</ul>
 			</section>
 
-		</div>
 	</div>
 </template>
 
@@ -70,16 +68,6 @@ export default {
 			'isAuthenticated',
 			'accessToken'
 		])
-	},
-
-	methods: {
-		parseDate (rawDate) {
-			const dateAndTime = rawDate.split('T')
-			const date = dateAndTime[0].split('-')
-			const time = dateAndTime[1].slice(0, -1).split(':')
-
-			return `${date[2]}/${date[1]}/${date[0]}, ${time[0]}:${time[1]} UTC`
-		}
 	}
 }
 </script>

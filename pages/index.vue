@@ -10,38 +10,97 @@
 			<div class="m-5 sm:m-10">
 				<p class="text-2xl text-blue-900 font-bold my-5">Tech stack used</p>
 				<ul>
-					<li>👉 <span class="font-semibold">Nuxt.js</span> - front end</li>
-					<li>👉 <span class="font-semibold">Express.js</span> - back end</li>
-					<li>👉 <span class="font-semibold">MongoDB</span> - database</li>
-					<li>👉 <span class="font-semibold">Axios</span> - HTTP requests</li>
-					<li>👉 <span class="font-semibold">Yup</span> - form validation</li>
+					<li v-for="(tech, index) in techStack" :key="index">
+						👉 <span class="font-semibold">{{ tech.name }}</span> - {{ tech.desc }}
+					</li>
 				</ul>
 			</div>
 
 			<div class="m-5 sm:m-10">
 				<p class="text-2xl text-blue-900 font-bold my-5">Routes</p>
 				<ul>
-					<li>
-						<nuxt-link
-							to="/login"
-							class="hover:underline"
-						>Sign In</nuxt-link>
-					</li>
-					<li>
-						<nuxt-link
-							to="/signup"
-							class="hover:underline"
-						>Create Account</nuxt-link>
-					</li>
-					<li>
-						<nuxt-link
-							to="/profile"
-							class="hover:underline"
-						>My Profile</nuxt-link>
-					</li>
+
+					<li class="text-blue-900 text-lg font-bold">Authentication</li>
+					<ul class="border-l-4 border-gray-200 mb-2 pl-3">
+						<li v-for="(route, index) in authRoutes" :key="index">
+							<nuxt-link
+								:to="route.path"
+								class="hover:underline"
+							>{{ route.name }}</nuxt-link>
+						</li>
+					</ul>
+
+					<li class="text-blue-900 text-lg font-bold">User Posts</li>
+					<ul class="border-l-4 border-gray-200 pl-3">
+						<li v-for="(route, index) in postsRoutes" :key="index">
+							<nuxt-link
+								:to="route.path"
+								class="hover:underline"
+							>{{ route.name }}</nuxt-link>
+						</li>
+					</ul>
+
 				</ul>
 			</div>
 		</div>
 
   </div>
 </template>
+
+<script>
+const techStack = [
+	{
+		name: 'Nuxt.js',
+		desc: 'front end'
+	}, {
+		name: 'Express.js',
+		desc: 'back end'
+	}, {
+		name: 'MongoDB',
+		desc: 'database'
+	}, {
+		name: 'Axios',
+		desc: 'HTTP requests'
+	}, {
+		name: 'Yup',
+		desc: 'form validation'
+	}
+]
+
+const authRoutes = [
+	{
+		path: '/login',
+		name: 'Sign In'
+	}, {
+		path: '/signup',
+		name: 'Create Account'
+	}, {
+		path: '/profile',
+		name: 'My Profile'
+	}
+]
+
+const postsRoutes = [
+	{
+		path: '/posts/new',
+		name: 'Create Post'
+	}, {
+		path: '/posts/my',
+		name: 'My Posts'
+	}, {
+		path: '/posts/all',
+		name: 'All Posts'
+	}
+]
+
+
+export default {
+	data () {
+		return {
+			techStack,
+			authRoutes,
+			postsRoutes
+		}
+	}
+}
+</script>

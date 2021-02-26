@@ -2,13 +2,13 @@ import Vue from 'vue'
 import Unicon from 'vue-unicons/dist/vue-unicons-ssr.common.js'
 
 import {
-	uniBars, uniMultiply
+	uniAlignCenterAlt, uniMultiply
 } from 'vue-unicons/src/icons'
 
 import 'vue-unicons/dist/vue-unicons-ssr.css'
 
 Unicon.add([
-	uniBars, uniMultiply
+	uniAlignCenterAlt, uniMultiply
 ])
 
 Vue.use(Unicon)
