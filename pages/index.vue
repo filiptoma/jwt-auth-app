@@ -1,13 +1,13 @@
 <template>
-  <main class="mx-5 my-10 sm:my-32">
+  <main class="mx-5 my-10 sm:my-20">
 
 		<!-- App heading -->
-    <section class="text-4xl sm:text-5xl text-center font-bold mt-16 mb-10">
+    <section class="text-4xl sm:text-5xl text-center font-bold">
 			<h1 class="text-blue-900 select-none my-5">Auth App</h1>
 			<h2 class="text-2xl sm:text-3xl font-semibold my-5">using JWT technology</h2>
 		</section>
 
-		<article class="flex flex-wrap justify-center">
+		<article class="flex flex-wrap justify-center my-10">
 
 			<!-- Tech stack list -->
 			<section class="m-5 sm:m-10">
@@ -51,6 +51,17 @@
 
 		</article>
 
+		<footer class="flex flex-wrap justify-center my-10 sm:my-20">
+			<nuxt-link
+				to="/about"
+				class="hover:text-blue-900 select-none mx-5 sm:mx-10 my-2"
+			>How does the Auth App work?</nuxt-link>
+			<nuxt-link
+				to="/resources"
+				class="hover:text-blue-900 select-none mx-5 sm:mx-10 my-2"
+			>Some useful articles I collected.</nuxt-link>
+		</footer>
+
   </main>
 </template>
 
@@ -71,6 +82,9 @@ const techStack = [
 	}, {
 		name: 'Yup',
 		desc: 'form validation'
+	}, {
+		name: 'Tailwind',
+		desc: 'CSS'
 	}
 ]
 
