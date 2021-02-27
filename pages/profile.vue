@@ -1,5 +1,5 @@
 <template>
-	<div class="mx-5 my-10 sm:my-32 sm:w-2/3 sm:mx-auto">
+	<main class="mx-5 my-10 sm:my-32 sm:w-2/3 sm:mx-auto">
 
 			<!-- Vuex store info -->
 			<section class="mb-16">
@@ -22,7 +22,7 @@
 
 			<!-- Database info -->
 			<section>
-				<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold my-6 select-none">User info from database</h1>
+				<h2 class="text-3xl sm:text-4xl text-blue-900 font-bold my-6 select-none">User info from database</h2>
 				<ul>
 					<li>
 						<span class="text-blue-900 font-bold">User ID</span>
@@ -47,7 +47,7 @@
 				</ul>
 			</section>
 
-	</div>
+	</main>
 </template>
 
 <script>
@@ -58,6 +58,17 @@ import UserService from '~/api/services/UserService'
 export default {
 	transition: 'slide-bottom',
 	middleware: 'user',
+
+	head: {
+		title: 'Your Profile',
+		meta: [
+			{
+				hid: 'description',
+				name: 'description',
+				content: 'Auth App by filiptoma.com - this is protected route. Only logged in users will see the content here.'
+			}
+		]
+	},
 
 	async asyncData ({ store }) {
 		const res = await UserService.myProfile(store.state.auth.accessToken)

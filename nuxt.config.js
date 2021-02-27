@@ -1,14 +1,21 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Auth App - with JWT tech',
+    titleTemplate: '%s | JWT Auth App by filiptoma.com',
+		title: 'JWT Auth App by filiptoma.com',
     htmlAttrs: {
       lang: 'en'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      {
+				hid: 'description',
+				name: 'description',
+				content: `
+					Auth App is a free-time project made by filiptoma.com. It uses JWT technology to authenticate and authorize user.
+					To test it, some routes are available only to signed in users.`
+			}
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

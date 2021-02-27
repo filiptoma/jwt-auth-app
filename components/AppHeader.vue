@@ -1,11 +1,11 @@
 <template>
-	<div class="relative">
+	<header class="relative">
 
 		<!-- Navbar -->
-		<div class="flex justify-between items-center border-b-2 border-gray-200 p-6">
+		<section class="flex justify-between items-center border-b-2 border-gray-200 p-6">
 
 			<!-- Logged in user && Sign out button -->
-			<div class="flex flex-col">
+			<aside class="flex flex-col">
 
 				<h1 class="text-sm select-none">Using the app as:</h1>
 
@@ -22,10 +22,10 @@
 					v-else
 					class="text-xl text-blue-900 font-bold"
 				>Guest</p>
-			</div>
+			</aside>
 
 			<!-- Navigation routes -->
-			<div class="flex flex-wrap justify-end text-lg">
+			<nav class="flex flex-wrap justify-end text-lg">
 				<nuxt-link
 					to="/"
 					class="hidden sm:block hover:text-blue-700 text-blue-900 font-bold mx-3 select-none"
@@ -47,15 +47,15 @@
 						<unicon v-else name="align-center-alt" fill="#1E3A8A" width="28" height="28" class="mt-2" />
 					</client-only>
 				</button>
-			</div>
-		</div>
+			</nav>
+		</section>
 
 		<!-- Menu overlay -->
-		<div
+		<section
 			v-show="showMenu"
 			class="z-20 h-screen w-screen bg-white"
 		>
-			<div class="flex flex-col items-center my-10">
+			<nav class="flex flex-col items-center my-10">
 				<nuxt-link
 					@click.native="showMenu = !showMenu"
 					to="/"
@@ -71,8 +71,8 @@
 					to="/profile"
 					class="text-blue-900 text-lg font-bold m-3"
 				>My Profile</nuxt-link>
-			</div>
-		</div>
+			</nav>
+		</section>
 
 		<!-- Notification -->
 		<Notification
@@ -80,7 +80,7 @@
 			class="fixed bottom-0 w-screen z-20"
 		/>
 
-	</div>
+	</header>
 </template>
 
 <script>

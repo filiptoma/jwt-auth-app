@@ -1,55 +1,57 @@
 <template>
-  <div class="mx-5 my-10 sm:my-32">
+  <main class="mx-5 my-10 sm:my-32">
 
 		<!-- App heading -->
-    <h1 class="text-4xl sm:text-5xl text-center font-bold mt-16 mb-10">
-			<span class="text-blue-900 select-none">Auth App</span>
-			<br />
-			<span class="text-2xl sm:text-3xl font-semibold">using JWT technology</span>
-		</h1>
+    <section class="text-4xl sm:text-5xl text-center font-bold mt-16 mb-10">
+			<h1 class="text-blue-900 select-none my-5">Auth App</h1>
+			<h2 class="text-2xl sm:text-3xl font-semibold my-5">using JWT technology</h2>
+		</section>
 
-		<div class="flex flex-wrap justify-center">
+		<article class="flex flex-wrap justify-center">
 
 			<!-- Tech stack list -->
-			<div class="m-5 sm:m-10">
-				<p class="text-2xl text-blue-900 font-bold my-5 select-none">Tech stack used</p>
+			<section class="m-5 sm:m-10">
+				<h3 class="text-2xl text-blue-900 font-bold my-5 select-none">Tech stack used</h3>
 				<ul>
 					<li v-for="(tech, index) in techStack" :key="index">
 						👉 <span class="font-semibold">{{ tech.name }}</span> - {{ tech.desc }}
 					</li>
 				</ul>
-			</div>
+			</section>
 
 			<!-- Routes list -->
-			<div class="m-5 sm:m-10">
-				<p class="text-2xl text-blue-900 font-bold my-5 select-none">Routes</p>
-				<ul>
+			<section class="m-5 sm:m-10">
+				<h3 class="text-2xl text-blue-900 font-bold my-5 select-none">Routes</h3>
+				<nav>
+					<ul>
 
-					<li class="text-blue-900 text-lg font-bold select-none">Authentication</li>
-					<ul class="border-l-4 border-gray-200 mb-5 mt-1 pl-4">
-						<li v-for="(route, index) in authRoutes" :key="index">
-							<nuxt-link
-								:to="route.path"
-								class="hover:text-blue-900 select-none"
-							>{{ route.name }}</nuxt-link>
-						</li>
+						<li class="text-blue-900 text-lg font-bold select-none">Authentication</li>
+						<ul class="border-l-4 border-gray-200 mb-5 mt-1 pl-4">
+							<li v-for="(route, index) in authRoutes" :key="index">
+								<nuxt-link
+									:to="route.path"
+									class="hover:text-blue-900 select-none"
+								>{{ route.name }}</nuxt-link>
+							</li>
+						</ul>
+
+						<li class="text-blue-900 text-lg font-bold select-none">User Posts</li>
+						<ul class="border-l-4 border-gray-200 mt-1 pl-4">
+							<li v-for="(route, index) in postsRoutes" :key="index">
+								<nuxt-link
+									:to="route.path"
+									class="hover:text-blue-900 select-none"
+								>{{ route.name }}</nuxt-link>
+							</li>
+						</ul>
+
 					</ul>
+				</nav>
+			</section>
 
-					<li class="text-blue-900 text-lg font-bold select-none">User Posts</li>
-					<ul class="border-l-4 border-gray-200 mt-1 pl-4">
-						<li v-for="(route, index) in postsRoutes" :key="index">
-							<nuxt-link
-								:to="route.path"
-								class="hover:text-blue-900 select-none"
-							>{{ route.name }}</nuxt-link>
-						</li>
-					</ul>
+		</article>
 
-				</ul>
-			</div>
-		</div>
-
-  </div>
+  </main>
 </template>
 
 <script>
@@ -106,6 +108,17 @@ export default {
 			authRoutes,
 			postsRoutes
 		}
+	},
+
+	head: {
+		title: 'Home',
+		meta: [
+			{
+				hid: 'description',
+				name: 'description',
+				content: 'Auth App by filiptoma.com - this is an unprotected route.'
+			}
+		]
 	}
 }
 </script>

@@ -1,29 +1,29 @@
 <template>
-	<div class="mx-5 my-10 sm:my-32 sm:w-2/3 sm:mx-auto">
-		<div>
+	<main class="mx-5 my-10 sm:my-32 sm:w-2/3 sm:mx-auto">
+		<article>
 
 			<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold my-10 select-none">Create Post</h1>
 
 			<!-- Form input -->
-			<div class="sm:my-16">
+			<section class="sm:my-16">
 				<label for="post" class="font-semibold select-none">What's on your mind?</label>
 				<input
 					id="post" type="text" name="post"
 					class="focus:outline-none w-full text-blue-900 border-b-4 border-gray-200 px-3 py-1"
 					v-model="post"
 				>
-			</div>
+			</section>
 
 			<!-- Form buttons -->
-			<div class="flex justify-end my-6 sm:my-16">
+			<section class="flex justify-end my-6 sm:my-16">
 				<button
 				@click="validateForm"
 					class="focus:outline-none hover:bg-blue-700 bg-blue-900 text-white font-bold px-8 py-4"
 				><span class="select-none">Create</span></button>
-			</div>
+			</section>
 
-		</div>
-	</div>
+		</article>
+	</main>
 </template>
 
 <script>
@@ -39,6 +39,17 @@ const postFormSchema = object().shape({
 export default {
 	transition: 'slide-bottom',
 	middleware: 'user',
+
+	head: {
+		title: 'Create New Post',
+		meta: [
+			{
+				hid: 'description',
+				name: 'description',
+				content: 'Auth App by filiptoma.com - this is protected route. Only logged in users will see the content here.'
+			}
+		]
+	},
 
 	data () {
 		return {
@@ -59,30 +70,6 @@ export default {
 		showFormError () {
 			document.getElementById('post').classList.add('border-red-500')
 		},
-
-		// validateForm () {
-		// 	postFormSchema
-		// 		.validate({ post: this.post })
-		// 		.then(async () => {
-		// 			this.error = ''
-		// 			await this.createPost()
-		// 			if (!this.error) {
-		// 				this.showNotification({
-		// 					message: 'Post created!',
-		// 					type: 'success'
-		// 				})
-		// 				this.$router.push('/posts/my')
-		// 			}
-		// 		})
-		// 		.catch (err => {
-		// 			this.error = err.message
-		// 			this.showFormError()
-		// 			this.showNotification({
-		// 				message: this.error,
-		// 				type: 'error'
-		// 			})
-		// 		})
-		// },
 
 		async validateForm () {
 			try {

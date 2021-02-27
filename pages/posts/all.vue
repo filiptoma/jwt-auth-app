@@ -1,38 +1,38 @@
 <template>
-	<div class="mx-5 my-10 sm:my-32 sm:w-2/3 sm:mx-auto">
+	<main class="mx-5 my-10 sm:my-32 sm:w-2/3 sm:mx-auto">
 
 		<!-- Heading and sorting info -->
-		<div class="my-10">
+		<section class="my-10">
 			<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold select-none">Every post created here</h1>
-			<p class="text-sm">
+			<h6 class="text-sm">
 				sorted
 				<span class="italic">chronologically</span>
 				in
 				<span class="italic">descending</span>
 				order
-			</p>
-		</div>
+			</h6>
+		</section>
 
 		<!-- All posts -->
-		<div v-if="posts.length !== 0">
-			<div
+		<article v-if="posts.length !== 0">
+			<section
 				v-for="(post, index) in posts" :key="index"
 				class="my-8"
 			>
-				<h1 class="font-semibold text-lg">
+				<h4 class="font-semibold text-lg">
 					<span class="text-blue-900 text-2xl font-bold">{{ post.author }}</span>
 					wrote at {{ parseMongoDate(post.createDate) }}
-				</h1>
+				</h4>
 				<p class="border-l-4 border-gray-200 px-4 my-2">{{ post.post }}</p>
-			</div>
-		</div>
-		<div v-else>
-			<div class="my-16">
-				<h1>🤷‍♂️ No posts here... yet!</h1>
-			</div>
-		</div>
+			</section>
+		</article>
+		<article v-else>
+			<section class="my-16">
+				<h5>🤷‍♂️ No posts here... yet!</h5>
+			</section>
+		</article>
 
-	</div>
+	</main>
 </template>
 
 <script>
@@ -40,6 +40,17 @@ import PostsService from '~/api/services/PostsService'
 
 export default {
 	transition: 'slide-bottom',
+
+	head: {
+		title: 'All Posts',
+		meta: [
+			{
+				hid: 'description',
+				name: 'description',
+				content: 'Auth App by filiptoma.com - this is an unprotected route.'
+			}
+		]
+	},
 
 	async asyncData () {
 		const res = await PostsService.allPosts()

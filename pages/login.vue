@@ -1,11 +1,11 @@
 <template>
-	<div class="mx-5 my-10 sm:my-32">
-		<div class="max-w-md m-auto">
+	<main class="mx-5 my-10 sm:my-32">
+		<article class="max-w-md m-auto">
 
 			<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold my-10 select-none">Sign In</h1>
 
 			<!-- Form input -->
-			<div>
+			<section>
 				<div class="flex flex-col my-3">
 					<label for="username" class="font-semibold select-none">Username</label>
 					<input
@@ -22,10 +22,10 @@
 						v-model="values.password"
 					/>
 				</div>
-			</div>
+			</section>
 
 			<!-- Form buttons -->
-			<div class="flex justify-between space-x-5 items-center my-6">
+			<section class="flex justify-between space-x-5 items-center my-6">
 				<nuxt-link
 					to="/signup"
 					class="hover:text-blue-700 text-blue-900 font-semibold select-none"
@@ -34,10 +34,10 @@
 					@click="validateForm"
 					class="focus:outline-none hover:bg-blue-700 bg-blue-900 text-white font-bold px-8 py-4"
 				><span class="select-none">Sign In</span></button>
-			</div>
+			</section>
 
-		</div>
-	</div>
+		</article>
+	</main>
 </template>
 
 <script>
@@ -60,6 +60,17 @@ const loginFormSchema = object().shape({
 export default {
 	transition: 'slide-bottom',
 	middleware: 'guest',
+
+	head: {
+		title: 'Sign In',
+		meta: [
+			{
+				hid: 'description',
+				name: 'description',
+				content: 'Auth App by filiptoma.com - this is an unprotected route.'
+			}
+		]
+	},
 
 	data () {
 		return {

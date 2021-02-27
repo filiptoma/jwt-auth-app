@@ -1,9 +1,9 @@
 <template>
-	<div :class="`bg-${color[getNotification.type]}`">
+	<mark :class="`bg-${color[getNotification.type]}`">
 		<p class="text-center text-white font-semibold py-2">
 			{{ emoji[getNotification.type] }} {{ getNotification.message }}
 		</p>
-	</div>
+	</mark>
 </template>
 
 <script>
