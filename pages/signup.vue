@@ -58,7 +58,7 @@ const registerFormSchema = object().shape({
 	username: string()
 							.required('Please provide all data.')
 							.min(3, 'Username should be 3-15 characters long.').max(15, 'Username should be 3-15 characters long.')
-							.matches(/^[a-zA-Z0-9._]+$/, 'Invalid characters.'),
+							.matches(/^[a-z0-9._]+$/, 'Username should be lowercase. Numbers . and _ are allowed.'),
 	email: string()
 						.required('Please provide all data.')
 						.email('Invalid e-mail format.'),

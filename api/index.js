@@ -1,19 +1,19 @@
 const express = require('express')
-const connect = require('../db/connect')
+const dbConnect = require('../db/connect')
 
 const app = express()
 
-// Init body-parser options (inbuilt with Express)
+// init body-parser options (provided in Express package)
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// Import API routes
+// import api routes
 const routes = require('./routes')
 
-// Use API routes
+// use api routes
 app.use(routes)
 
-// Export the server middleware
+// export the server middleware for Nuxt.js to use
 module.exports = {
 	path: '/api',
 	handler: app

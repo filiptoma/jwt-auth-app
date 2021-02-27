@@ -6,12 +6,12 @@ const utils = require('./utils')
 const postsController = require('./controllers/postsController')
 const userController = require('./controllers/userController')
 
-// Posts routes
+// posts routes
 router.get('/posts/me', utils.authenticateToken, postsController.myPosts)
 router.get('/posts/all', postsController.allPosts)
 router.post('/posts/new', utils.authenticateToken, postsController.newPost)
 
-// User route
-router.get('/user/me', utils.authenticateToken, userController.me)
+// user route
+router.get('/user/me', utils.authenticateToken, userController.myProfile)
 
 module.exports = router

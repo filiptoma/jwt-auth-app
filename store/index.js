@@ -1,8 +1,6 @@
-import TokenService from '~/api/services/TokenService'
-
 export const state = () => ({
 	auth: {
-		isLoggedIn: false,
+		loggedIn: false,
 		user: null,
 		accessToken: null
 	},
@@ -14,7 +12,7 @@ export const state = () => ({
 })
 
 export const mutations = {
-	// Login mutations
+	// login mutations
 	setUser (state, userData) {
 		state.auth.user = userData
 	},
@@ -23,11 +21,11 @@ export const mutations = {
 		state.auth.accessToken = newAccessToken
 	},
 
-	hasLoggedIn (state) {
-		state.auth.isLoggedIn = true
+	setUserStatus (state) {
+		state.auth.loggedIn = true
 	},
 
-	// Logout mutations
+	// logout mutations
 	unsetUser (state) {
 		state.auth.user = null
 	},
@@ -36,11 +34,11 @@ export const mutations = {
 		state.auth.accessToken = null
 	},
 
-	hasLoggedOut (state) {
-		state.auth.isLoggedIn = false
+	unsetUserStatus (state) {
+		state.auth.loggedIn = false
 	},
 
-	// Notification mutations
+	// notification mutations
 	setNotification (state, config) {
 		state.notification.config = config
 	},
@@ -53,7 +51,7 @@ export const mutations = {
 		state.notification.config = null
 	},
 
-	// Silent refresh mutations
+	// silent refresh mutations
 	startSilentRefresh (state) {
 		state.activeSilentRefresh = true
 	},
@@ -64,9 +62,14 @@ export const mutations = {
 }
 
 export const actions = {
+	// automatically runs at `nuxtServerInit` hook
+	// refer Nuxt.js lifecycle hooks docs
 	async nuxtServerInit ({ dispatch }, { req }) {
 		try {
+			// using `@nuxtjs/axios` module
+			// with `~/api/services/TokenService.getToken()` the cookie header isn't sent
 			const res = await this.$axios.get('http://localhost:4000/auth/token')
+
 			dispatch('saveUserData', {
 				userData: res.data.userData,
 				accessToken: res.data.accessToken
@@ -77,17 +80,19 @@ export const actions = {
 	saveUserData ({ commit }, { userData, accessToken }) {
 		commit('setUser', userData)
 		commit('setAccessToken', accessToken)
-		commit('hasLoggedIn')
+		commit('setUserStatus')
 	},
 
 	removeUserData ({ commit }) {
 		commit('unsetUser')
 		commit('unsetAccessToken')
-		commit('hasLoggedOut')
+		commit('unsetUserStatus')
 	},
 
 	showNotification ({ commit, state }, config) {
+		// each notification should be displayed for exactly 4s
 		clearTimeout(state.notification.timeoutId)
+
 		commit('setNotification', config)
 		const timeoutId = setTimeout(() => {
 			commit('unsetNotification')
@@ -98,7 +103,7 @@ export const actions = {
 
 export const getters = {
 	isAuthenticated (state) {
-		return state.auth.isLoggedIn
+		return state.auth.loggedIn
 	},
 
 	loggedInUser (state) {

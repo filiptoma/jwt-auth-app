@@ -29,26 +29,16 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/tailwindcss',
-  ],
+  buildModules: [ '@nuxtjs/tailwindcss' ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-		'@nuxtjs/axios'
-	],
+  modules: [ '@nuxtjs/axios' ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-		withCredentials: true,
-	},
+  axios: { withCredentials: true },
 
-	proxy: {},
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 
-	serverMiddleware: [
-		'~/api/index.js'
-	]
+	serverMiddleware: [ '~/api/index.js' ]
 }

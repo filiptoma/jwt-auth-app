@@ -58,7 +58,7 @@ export default {
 	middleware: 'user',
 
 	async asyncData ({ store }) {
-		const res = await UserService.myProfileInfo(store.state.auth.accessToken)
+		const res = await UserService.myProfile(store.state.auth.accessToken)
 		return { profile: res.data.profile }
 	},
 

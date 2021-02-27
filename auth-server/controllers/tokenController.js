@@ -4,10 +4,10 @@ const jwt = require('jsonwebtoken')
 
 module.exports.renew = async (req, res) => {
 	const refreshToken = req.cookies['refreshToken']
-	// Client did not provide any refresh token
+	// client did not provide refresh token
 	if (!refreshToken) return res.status(401).json({ message: 'Unauthorized!' })
 
-	// Refresh token not in DB
+	// refresh token not in DB
 	const refreshTokenExists = await RefreshToken.findOne({ refreshToken: refreshToken })
 	if (!refreshTokenExists) return res.status(403).json({ message: 'Forbidden!' })
 
@@ -15,18 +15,22 @@ module.exports.renew = async (req, res) => {
 		refreshToken,
 		process.env.RT_SECRET,
 		(error, user) => {
+			// expired or somehow invalid refresh token
 			if (error) return res.status(403).json({ message: 'Forbidden!' })
+
 			const userData = {
 				username: user.username
 			}
-			const expiry = 5000
+			// in production increase `expiresIn` to 10-15 min
+			// `expiry` should be slightly less than `expiresIn` (~30s less)
+			const expiry = 5000		// how often is access token refreshed on frontend
 			const accessToken = jwt.sign(
 				userData,
 				process.env.AT_SECRET,
 				{ expiresIn: '6s' }
 			)
 
-			// Send the access token to front end
+			// send the access token to front end
 			res.status(200).json({ userData, accessToken, expiry })
 		}
 	)

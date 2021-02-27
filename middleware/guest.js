@@ -1,5 +1,5 @@
 export default ({ store, redirect }) => {
-	if (store.state.auth.isLoggedIn) {
+	if (store.state.auth.loggedIn) {
 		store.dispatch('showNotification', {
 			message: 'You are already signed in.',
 			type: 'error'

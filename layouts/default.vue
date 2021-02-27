@@ -27,11 +27,11 @@ html {
   box-sizing: border-box;
 }
 
+/* Page transition */
 .slide-bottom-enter-active,
 .slide-bottom-leave-active {
 	transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
 }
-
 .slide-bottom-enter,
 .slide-bottom-leave-to {
 	opacity: 0;
