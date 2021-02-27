@@ -1,5 +1,5 @@
 <template>
-	<main class="mx-5 my-10 sm:my-32 sm: w-2/3 sm:mx-auto">
+	<main class="mx-10 my-10 sm:my-32 sm:w-2/3 sm:mx-auto">
 
 		<section class="my-10">
 			<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold select-none">Well, how does Auth App work?</h1>
