@@ -40,7 +40,7 @@
 					</li>
 					<li>
 						<span class="text-blue-900 font-bold">Registration date</span>
-						{{ profile.registrationDate }}
+						{{ parseMongoDate(profile.registrationDate) }}
 					</li>
 				</ul>
 			</section>
