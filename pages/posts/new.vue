@@ -72,8 +72,8 @@ export default {
 						this.$router.push('/posts/my')
 					}
 				})
-				.catch (error => {
-					this.error = error.message
+				.catch (err => {
+					this.error = err.message
 					this.showFormError()
 					this.showNotification({
 						message: this.error,
@@ -89,8 +89,8 @@ export default {
 					accessToken: this.accessToken()
 				}
 				await PostsService.newPost(newPost)
-			} catch (error) {
-				this.error = error.response.data.message
+			} catch (err) {
+				this.error = err.response.data.message
 				this.showFormError()
 				this.showNotification({
 					message: this.error,

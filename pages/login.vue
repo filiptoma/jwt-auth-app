@@ -67,7 +67,7 @@ export default {
 				username: '',
 				password: '',
 			},
-			authError: ''
+			error: ''
 		}
 	},
 
@@ -86,9 +86,9 @@ export default {
 			loginFormSchema
 				.validate(this.authValues)
 				.then(async () => {
-					this.authError = ''
+					this.error = ''
 					await this.loginUser()
-					if (!this.authError) {
+					if (!this.error) {
 						this.showNotification({
 							message: 'Successfully signed in!',
 							type: 'success'
@@ -96,11 +96,11 @@ export default {
 						this.$router.push('/')
 					}
 				})
-				.catch (error => {
-					this.authError = error.message
+				.catch (err => {
+					this.error = err.message
 					this.showFormError()
 					this.showNotification({
-						message: this.authError,
+						message: this.error,
 						type: 'error'
 					})
 				})
@@ -113,11 +113,11 @@ export default {
 					userData: res.data.userData,
 					accessToken: res.data.accessToken
 				})
-			} catch (error) {
-				this.authError = error.response.data.message
+			} catch (err) {
+				this.error = err.response.data.message
 				this.showFormError()
 				this.showNotification({
-					message: this.authError,
+					message: this.error,
 					type: 'error'
 				})
 			}

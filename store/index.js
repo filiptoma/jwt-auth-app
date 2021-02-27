@@ -74,7 +74,7 @@ export const actions = {
 				userData: res.data.userData,
 				accessToken: res.data.accessToken
 			})
-		} catch (error) { return }
+		} catch (err) { return }
 	},
 
 	saveUserData ({ commit }, { userData, accessToken }) {

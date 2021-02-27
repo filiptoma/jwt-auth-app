@@ -14,9 +14,9 @@ module.exports.renew = async (req, res) => {
 	jwt.verify(
 		refreshToken,
 		process.env.RT_SECRET,
-		(error, user) => {
+		(err, user) => {
 			// expired or somehow invalid refresh token
-			if (error) return res.status(403).json({ message: 'Forbidden!' })
+			if (err) return res.status(403).json({ message: 'Forbidden!' })
 
 			const userData = {
 				username: user.username

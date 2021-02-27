@@ -11,10 +11,10 @@ module.exports.authenticateToken = (req, res, next) => {
 	jwt.verify(
 		accessToken,
 		process.env.AT_SECRET,
-		(error, user) => {
+		(err, user) => {
 			// access token is invalid or has timed out for this user
 			// shouldn't happen if there is enough time between `silentRefresh` and access token expiration
-			if (error) return res.status(403).json({ message: 'Forbidden!' })
+			if (err) return res.status(403).json({ message: 'Forbidden!' })
 
 			// else add the user object to the request
 			// accessible by `request.user`

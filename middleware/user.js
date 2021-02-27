@@ -16,7 +16,7 @@ export default async ({ store, redirect }) => {
 				ms = res.data.expiry
 				// recursively execute `silentRefresh` until user logs out or closes the app
 				setTimeout(async () => await silentRefresh(renewAccess, ms), ms)
-			} catch (error) {
+			} catch (err) {
 				return store.commit('stopSilentRefresh')
 			}
 		}
