@@ -129,7 +129,6 @@ export default {
 					userData: res.data.userData,
 					accessToken: res.data.accessToken
 				})
-				setTimeout(async () => await this.$silentRefresh(), res.data.expiry)
 			} catch (error) {
 				this.authError = error.response.data.message
 				this.showFormError()

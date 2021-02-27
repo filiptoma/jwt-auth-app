@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="relative">
 		<div class="flex justify-between items-center border-b-2 border-gray-200 p-5">
 
 			<!-- Logged in user info -->
@@ -15,7 +15,6 @@
 						@click="logoutUser"
 						class="focus:outline-none font-semibold py-1 my-2"
 					>👋 Sign Out</button>
-					<p class="text-xs">{{ accessToken.slice(accessToken.length - 20) }}</p>
 				</div>
 				<p
 					v-else
@@ -74,7 +73,10 @@
 		</div>
 
 		<!-- Notification -->
-		<Notification v-if="getNotification" />
+		<Notification
+			v-if="getNotification"
+			class="fixed bottom-0 w-screen z-20"
+		/>
 
 	</div>
 </template>

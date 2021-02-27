@@ -4,7 +4,6 @@ export default async ({ store, redirect }) => {
 	if (!store.state.activeSilentRefresh) {
 		store.commit('startSilentRefresh')
 		const silentRefresh = async (renewAccess, ms) => {
-			console.log('=== SILENT REFRESH FROM MIDDLEWARE ===')
 			try {
 				const res = await renewAccess()
 				store.dispatch('saveUserData', {
