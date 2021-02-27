@@ -3,7 +3,7 @@
     <h1 class="text-4xl sm:text-5xl text-center font-bold mt-16 mb-10">
 			<span class="text-blue-900">Auth App</span>
 			<br />
-			<span class="text-2xl sm:text-3xl font-medium">using JWT technology</span>
+			<span class="text-2xl sm:text-3xl font-semibold">using JWT technology</span>
 		</h1>
 
 		<div class="flex flex-wrap justify-center">
