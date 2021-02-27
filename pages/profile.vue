@@ -1,8 +1,9 @@
 <template>
 	<div class="mx-5 my-10 sm:my-32 sm:w-2/3 sm:mx-auto">
 
+			<!-- Vuex store info -->
 			<section class="mb-16">
-				<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold my-6">User info from web token</h1>
+				<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold my-6 select-none">User info from Vuex store</h1>
 				<ul>
 					<li>
 						<span class="text-blue-900 font-bold">Username</span>
@@ -13,14 +14,15 @@
 						{{ isAuthenticated }}
 					</li>
 					<li>
-						<span class="text-blue-900 font-bold">Token</span>
+						<span class="text-blue-900 font-bold">Access token</span>
 						...{{ accessToken.slice(accessToken.length - 20) }}...
 					</li>
 				</ul>
 			</section>
 
+			<!-- Database info -->
 			<section>
-				<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold my-6">User info from API request</h1>
+				<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold my-6 select-none">User info from database</h1>
 				<ul>
 					<li>
 						<span class="text-blue-900 font-bold">User ID</span>
@@ -51,7 +53,7 @@
 <script>
 import { mapGetters } from 'vuex'
 
-import UserService from '/api/services/UserService'
+import UserService from '~/api/services/UserService'
 
 export default {
 	transition: 'slide-bottom',

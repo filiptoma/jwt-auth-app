@@ -2,38 +2,38 @@
 	<div class="mx-5 my-10 sm:my-32">
 		<div class="max-w-md m-auto">
 
-			<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold my-10">Sign In</h1>
+			<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold my-10 select-none">Sign In</h1>
 
-			<!-- Login form -->
+			<!-- Form input -->
 			<div>
 				<div class="flex flex-col my-3">
-					<label for="username" class="font-semibold">Username</label>
+					<label for="username" class="font-semibold select-none">Username</label>
 					<input
 						id="username" type="text" name="username"
 						class="focus:outline-none text-blue-900 border-b-4 border-gray-200 px-3 py-1"
-						v-model="authValues.username"
+						v-model="values.username"
 					/>
 				</div>
 				<div class="flex flex-col my-3">
-					<label for="password" class="font-semibold">Password</label>
+					<label for="password" class="font-semibold select-none">Password</label>
 					<input
 						id="password" type="password" name="password"
 						class="focus:outline-none text-blue-900 border-b-4 border-gray-200 px-3 py-1"
-						v-model="authValues.password"
+						v-model="values.password"
 					/>
 				</div>
 			</div>
 
-			<!-- Form Buttons -->
+			<!-- Form buttons -->
 			<div class="flex justify-between space-x-5 items-center my-6">
 				<nuxt-link
 					to="/signup"
-					class="hover:underline text-blue-900 font-semibold"
+					class="hover:text-blue-700 text-blue-900 font-semibold select-none"
 				>Create Account</nuxt-link>
 				<button
 					@click="validateForm"
-					class="focus:outline-none bg-blue-900 text-white font-bold px-8 py-4"
-				>Sign In</button>
+					class="focus:outline-none hover:bg-blue-700 bg-blue-900 text-white font-bold px-8 py-4"
+				><span class="select-none">Sign In</span></button>
 			</div>
 
 		</div>
@@ -44,7 +44,7 @@
 import { object, string } from 'yup'
 import { mapActions } from 'vuex'
 
-import AuthService from '/api/services/AuthService'
+import AuthService from '~/api/services/AuthService'
 
 const loginFormSchema = object().shape({
 	username: string()
@@ -63,7 +63,7 @@ export default {
 
 	data () {
 		return {
-			authValues: {
+			values: {
 				username: '',
 				password: '',
 			},
@@ -82,38 +82,42 @@ export default {
 			document.getElementById('password').classList.add('border-red-500')
 		},
 
-		validateForm () {
-			loginFormSchema
-				.validate(this.authValues)
-				.then(async () => {
-					this.error = ''
-					await this.loginUser()
-					if (!this.error) {
-						this.showNotification({
-							message: 'Successfully signed in!',
-							type: 'success'
-						})
-						this.$router.push('/')
-					}
-				})
-				.catch (err => {
-					this.error = err.message
-					this.showFormError()
+		async validateForm () {
+			try {
+				await loginFormSchema.validate(this.values)
+				// form values are correct
+				this.error = ''
+				await this.loginUser()
+				// if user signed in successfully
+				if (!this.error) {
 					this.showNotification({
-						message: this.error,
-						type: 'error'
+						message: 'Successfully signed in!',
+						type: 'success'
 					})
+					this.$router.push('/profile')
+				}
+			} catch (err) {
+				// form validation error
+				this.error = err.message
+				this.showFormError()
+				this.showNotification({
+					message: this.error,
+					type: 'error'
 				})
+			}
 		},
 
 		async loginUser () {
 			try {
-				const res = await AuthService.loginUser(this.authValues)
+				// login user with provided credentials
+				const res = await AuthService.loginUser(this.values)
+				// save user data into vuex store
 				this.saveUserData({
 					userData: res.data.userData,
 					accessToken: res.data.accessToken
 				})
 			} catch (err) {
+				// invalid credentials
 				this.error = err.response.data.message
 				this.showFormError()
 				this.showNotification({

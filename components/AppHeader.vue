@@ -1,11 +1,13 @@
 <template>
 	<div class="relative">
-		<div class="flex justify-between items-center border-b-2 border-gray-200 p-5">
 
-			<!-- Logged in user info -->
+		<!-- Navbar -->
+		<div class="flex justify-between items-center border-b-2 border-gray-200 p-6">
+
+			<!-- Logged in user && Sign out button -->
 			<div class="flex flex-col">
 
-				<h1 class="text-sm">Using the app as:</h1>
+				<h1 class="text-sm select-none">Using the app as:</h1>
 
 				<div v-if="isAuthenticated">
 					<p class="text-xl text-blue-900 font-bold">
@@ -13,8 +15,8 @@
 					</p>
 					<button
 						@click="logoutUser"
-						class="focus:outline-none font-semibold py-1 my-2"
-					>👋 Sign Out</button>
+						class="focus:outline-none hover:text-blue-900 font-semibold mt-2 "
+					><span class="select-none">👋 Sign Out</span></button>
 				</div>
 				<p
 					v-else
@@ -22,27 +24,27 @@
 				>Guest</p>
 			</div>
 
-			<!-- Navbar -->
+			<!-- Navigation routes -->
 			<div class="flex flex-wrap justify-end text-lg">
 				<nuxt-link
 					to="/"
-					class="hidden sm:block hover:underline text-blue-900 font-bold mx-3"
+					class="hidden sm:block hover:text-blue-700 text-blue-900 font-bold mx-3 select-none"
 				>Home</nuxt-link>
 				<nuxt-link
 					to="/login"
-					class="hidden sm:block hover:underline text-blue-900 font-bold mx-3"
+					class="hidden sm:block hover:text-blue-700 text-blue-900 font-bold mx-3 select-none"
 				>Sign In</nuxt-link>
 				<nuxt-link
 					to="/profile"
-					class="hidden sm:block hover:underline text-blue-900 font-bold mx-3"
+					class="hidden sm:block hover:text-blue-700 text-blue-900 font-bold mx-3 select-none"
 				>My Profile</nuxt-link>
 				<button
 					@click="showMenu = !showMenu"
-					class="z-30 sm:hidden hover:underline text-blue-900 font-bold px-2 py-1"
+					class="z-30 sm:hidden focus:outline-none text-blue-900 font-bold px-2 py-1"
 				>
 					<client-only>
-						<unicon v-if="showMenu" name="multiply" fill="#1E3A8A" width="28" height="28" />
-						<unicon v-else name="align-center-alt" fill="#1E3A8A" width="28" height="28" />
+						<unicon v-if="showMenu" name="multiply" fill="#1E3A8A" width="28" height="28" class="mt-2" />
+						<unicon v-else name="align-center-alt" fill="#1E3A8A" width="28" height="28" class="mt-2" />
 					</client-only>
 				</button>
 			</div>
@@ -85,9 +87,9 @@
 import { mapGetters } from 'vuex'
 import { mapActions } from 'vuex'
 
-import AuthService from '/api/services/AuthService'
+import AuthService from '~/api/services/AuthService'
 
-import Notification from '/components/Notification'
+import Notification from '~/components/Notification'
 
 export default {
 	name: 'AppHeader',
