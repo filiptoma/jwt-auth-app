@@ -3,7 +3,7 @@ Auth App is a project I made to teach myself basic principles of user authentica
 
 However, instead of just coding up a simple auth server and API, I wanted to make a full stack app, to integrate auth on frontend too. I went with [Nuxt.js](https://nuxtjs.org/), so that I could easily render the content on the server.
 
-The app is fully open-source, so feel free to build it yourself and play around with it, or include it's code in your project. 😊
+The app is fully open-source, so feel free to play around with it, or include it's code in your project. 😊
 ## How to build the app
 
 First clone this repo and install dependencies:
