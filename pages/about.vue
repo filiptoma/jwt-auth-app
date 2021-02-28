@@ -134,7 +134,7 @@
 						personally prefer to have my API services all in one place (see /api/services) and that is impossible with Nuxt's axios module.
 					</p>
 					<p class="my-2">
-						However, I had one problem with pure axios. To this day I'm not able what caused that problem. In my <highlight>nuxtServerInit</highlight> hook, when
+						However, I had one problem with pure axios. To this day I'm not sure what caused that problem. In my <highlight>nuxtServerInit</highlight> hook, when
 						I used imported axios, my auth server did not see any cookie headers in the request, but after using <highlight>this.$axios</highlight>, everything
 						worked as it should. Well, maybe someday I will find an explanation...
 					</p>
