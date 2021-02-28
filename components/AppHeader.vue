@@ -7,7 +7,7 @@
 			<!-- Logged in user && Sign out button -->
 			<aside class="flex flex-col">
 
-				<h1 class="text-sm select-none">Using the app as:</h1>
+				<h1 class="text-sm">Using the app as:</h1>
 
 				<div v-if="isAuthenticated">
 					<p class="text-xl text-blue-900 font-bold">
@@ -16,7 +16,7 @@
 					<button
 						@click="logoutUser"
 						class="focus:outline-none hover:text-blue-900 font-semibold mt-2 "
-					><span class="select-none">👋 Sign Out</span></button>
+					>👋 Sign Out</button>
 				</div>
 				<p
 					v-else
@@ -28,15 +28,15 @@
 			<nav class="flex flex-wrap justify-end text-lg">
 				<nuxt-link
 					to="/"
-					class="hidden sm:block hover:text-blue-700 text-blue-900 font-bold mx-3 select-none"
+					class="hidden sm:block hover:text-blue-700 text-blue-900 font-bold mx-3"
 				>Home</nuxt-link>
 				<nuxt-link
 					to="/login"
-					class="hidden sm:block hover:text-blue-700 text-blue-900 font-bold mx-3 select-none"
+					class="hidden sm:block hover:text-blue-700 text-blue-900 font-bold mx-3"
 				>Sign In</nuxt-link>
 				<nuxt-link
 					to="/profile"
-					class="hidden sm:block hover:text-blue-700 text-blue-900 font-bold mx-3 select-none"
+					class="hidden sm:block hover:text-blue-700 text-blue-900 font-bold mx-3"
 				>My Profile</nuxt-link>
 				<button
 					@click="showMenu = !showMenu"

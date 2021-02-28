@@ -3,7 +3,7 @@
 
 			<!-- Vuex store info -->
 			<section class="mb-16">
-				<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold my-6 select-none">User info from Vuex store</h1>
+				<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold my-6">User info from Vuex store</h1>
 				<ul>
 					<li>
 						<span class="text-blue-900 font-bold">Username</span>
@@ -22,7 +22,7 @@
 
 			<!-- Database info -->
 			<section>
-				<h2 class="text-3xl sm:text-4xl text-blue-900 font-bold my-6 select-none">User info from database</h2>
+				<h2 class="text-3xl sm:text-4xl text-blue-900 font-bold my-6">User info from database</h2>
 				<ul>
 					<li>
 						<span class="text-blue-900 font-bold">User ID</span>

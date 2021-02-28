@@ -2,12 +2,12 @@
 	<main class="mx-5 my-10 sm:my-32">
 		<article class="max-w-md m-auto">
 
-			<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold my-10 select-none">Sign In</h1>
+			<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold my-10">Sign In</h1>
 
 			<!-- Form input -->
 			<section>
 				<div class="flex flex-col my-3">
-					<label for="username" class="font-semibold select-none">Username</label>
+					<label for="username" class="font-semibold">Username</label>
 					<input
 						id="username" type="text" name="username"
 						class="focus:outline-none text-blue-900 border-b-4 border-gray-200 px-3 py-1"
@@ -15,7 +15,7 @@
 					/>
 				</div>
 				<div class="flex flex-col my-3">
-					<label for="password" class="font-semibold select-none">Password</label>
+					<label for="password" class="font-semibold">Password</label>
 					<input
 						id="password" type="password" name="password"
 						class="focus:outline-none text-blue-900 border-b-4 border-gray-200 px-3 py-1"
@@ -28,12 +28,12 @@
 			<section class="flex justify-between space-x-5 items-center my-6">
 				<nuxt-link
 					to="/signup"
-					class="hover:text-blue-700 text-blue-900 font-semibold select-none"
+					class="hover:text-blue-700 text-blue-900 font-semibold"
 				>Create Account</nuxt-link>
 				<button
 					@click="validateForm"
 					class="focus:outline-none hover:bg-blue-700 bg-blue-900 text-white font-bold px-8 py-4"
-				><span class="select-none">Sign In</span></button>
+				>Sign In</button>
 			</section>
 
 		</article>

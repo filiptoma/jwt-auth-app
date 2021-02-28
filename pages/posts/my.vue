@@ -3,7 +3,7 @@
 
 		<!-- Heading and sorting info -->
 		<section class="my-10">
-			<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold select-none">Your posts</h1>
+			<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold">Your posts</h1>
 			<h6 class="text-sm">
 				sorted
 				<span class="italic">chronologically</span>

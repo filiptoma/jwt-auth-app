@@ -3,7 +3,7 @@
 
 		<!-- App heading -->
     <section class="text-4xl sm:text-5xl text-center font-bold">
-			<h1 class="text-blue-900 select-none my-5">Auth App</h1>
+			<h1 class="text-blue-900 my-5">Auth App</h1>
 			<h2 class="text-2xl sm:text-3xl font-semibold my-5">using JWT technology</h2>
 		</section>
 
@@ -11,7 +11,7 @@
 
 			<!-- Tech stack list -->
 			<section class="m-5 sm:m-10">
-				<h3 class="text-2xl text-blue-900 font-bold my-5 select-none">Tech stack used</h3>
+				<h3 class="text-2xl text-blue-900 font-bold my-5">Tech stack used</h3>
 				<ul>
 					<li v-for="(tech, index) in techStack" :key="index">
 						👉 <span class="font-semibold">{{ tech.name }}</span> - {{ tech.desc }}
@@ -21,26 +21,26 @@
 
 			<!-- Routes list -->
 			<section class="m-5 sm:m-10">
-				<h3 class="text-2xl text-blue-900 font-bold my-5 select-none">Routes</h3>
+				<h3 class="text-2xl text-blue-900 font-bold my-5">Routes</h3>
 				<nav>
 					<ul>
 
-						<li class="text-blue-900 text-lg font-bold select-none">Authentication</li>
+						<li class="text-blue-900 text-lg font-bold">Authentication</li>
 						<ul class="border-l-4 border-gray-200 mb-5 mt-1 pl-4">
 							<li v-for="(route, index) in authRoutes" :key="index">
 								<nuxt-link
 									:to="route.path"
-									class="hover:text-blue-900 select-none"
+									class="hover:text-blue-900"
 								>{{ route.name }}</nuxt-link>
 							</li>
 						</ul>
 
-						<li class="text-blue-900 text-lg font-bold select-none">User Posts</li>
+						<li class="text-blue-900 text-lg font-bold">User Posts</li>
 						<ul class="border-l-4 border-gray-200 mt-1 pl-4">
 							<li v-for="(route, index) in postsRoutes" :key="index">
 								<nuxt-link
 									:to="route.path"
-									class="hover:text-blue-900 select-none"
+									class="hover:text-blue-900"
 								>{{ route.name }}</nuxt-link>
 							</li>
 						</ul>
@@ -54,11 +54,11 @@
 		<footer class="flex flex-wrap justify-center my-10 sm:my-20">
 			<nuxt-link
 				to="/about"
-				class="hover:text-blue-900 select-none mx-5 sm:mx-10 my-2"
+				class="hover:text-blue-900 mx-5 sm:mx-10 my-2"
 			>How does the Auth App work?</nuxt-link>
 			<nuxt-link
 				to="/resources"
-				class="hover:text-blue-900 select-none mx-5 sm:mx-10 my-2"
+				class="hover:text-blue-900 mx-5 sm:mx-10 my-2"
 			>Some useful articles I collected.</nuxt-link>
 		</footer>
 

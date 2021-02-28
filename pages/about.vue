@@ -2,7 +2,7 @@
 	<main class="m-10 sm:my-32 sm:w-2/3 sm:mx-auto">
 
 		<section class="my-10">
-			<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold select-none">Well, how does Auth App work?</h1>
+			<h1 class="text-3xl sm:text-4xl text-blue-900 font-bold">Well, how does Auth App work?</h1>
 			<h6 class="text-sm">Here is how I utilize each module in this project.</h6>
 		</section>
 
