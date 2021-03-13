@@ -33,7 +33,7 @@ import { mapActions, mapGetters } from 'vuex'
 import PostsService from '~/api/services/PostsService'
 
 const postFormSchema = object().shape({
-	post: string().required('Please provide all data.')
+	post: string().required('Huh, I can\'t find any text.')
 })
 
 export default {

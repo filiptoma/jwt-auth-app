@@ -41,7 +41,7 @@
 				<button
 					@click="validateForm"
 					class="focus:outline-none hover:bg-blue-700 bg-blue-900 text-white font-bold px-8 py-4"
-				>>Sign Up</button>
+				>Sign Up</button>
 			</section>
 
 		</article>
